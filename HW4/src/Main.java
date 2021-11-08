@@ -18,7 +18,7 @@ public class Main {
 		KeywordList kLst = new KeywordList();
 		
 		while(sc.hasNext()){
-		    String cmd = sc.next();
+		    String cmd = sc.next();///##
 		    switch(cmd){
 	        	case "add":
 	        	{
