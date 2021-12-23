@@ -8,6 +8,15 @@ import javax.net.ssl.SSLSession;
 
 public class Main {//
 	public static void main(String[] args) throws IOException {
+		try {
+			System.out.println(new GoogleQuery("NCCU").query());
+//			GoogleQuery g =new GoogleQuery("NCCU");
+//			g.query();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		WebPage rootPage = new WebPage("http://soslab.nccu.edu.tw/Welcome.html", "Soslab");		
 		WebTree tree = new WebTree(rootPage);
 		//build childnode
@@ -27,7 +36,7 @@ public class Main {//
 			{
 				String name = scanner.next();//Yu
 				double weight = scanner.nextDouble();//1.2
-				Keyword k = new Keyword(name, weight);//store key // ¤Ö¤Fcount¡A­n¥ÎWordCounter¥h¼Æ
+				Keyword k = new Keyword(name, weight);//store key // ï¿½Ö¤Fcountï¿½Aï¿½nï¿½ï¿½WordCounterï¿½hï¿½ï¿½
 				keywords.add(k);
 			}
 			
