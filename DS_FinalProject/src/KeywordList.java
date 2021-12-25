@@ -31,6 +31,48 @@ public class KeywordList {
 //		printKeywordList(lst);
 	
 	}
+	public void find(String s){
+		int maxValue = -1;
+		int maxIndex = -1;
+		for(int i=0; i<lst.size(); i++){
+			int lcs = findLCS(lst.get(i).name, s);
+//			System.out.println(lcs);
+			if(lcs > maxValue){
+				maxValue = lcs;
+				maxIndex = i;
+			}
+		}
+		System.out.println(s+": "+lst.get(maxIndex).toString());
+	}
+	
+	public int findLCS(String x, String y){
+		//1. fill this method
+		int matrix[][] = new int[x.length()][y.length()];
+		for(int i=0; i<x.length(); i++) {
+			for(int j=0; j<y.length();j++) {
+				if(i == 0 || j == 0) {
+					matrix[i][j] = 0;
+				}
+				else if(x.charAt(i-1) == y.charAt(j-1)) {
+					matrix[i][j] = matrix[i-1][j-1] + 1;
+				}else {
+					matrix[i][j] = Math.max(matrix[i-1][j], matrix[i][j-1]);
+				}
+			}
+		}
+		return matrix[x.length()-1][y.length()-1];
+		
+	}
+	
+	private void printMatrix(int[][] matrix){
+		for(int i=0; i<matrix.length; i++){
+			for(int j=0; j<matrix[0].length; j++){
+				System.out.print(matrix[i][j] + " ");
+				if(j==matrix[0].length-1)System.out.print("\n");
+			}
+		}
+	}
+	
 	public void outputIndex(int i){
 		if(i>lst.size()){
 		    System.out.println("InvalidOperation");
@@ -191,16 +233,16 @@ public class KeywordList {
 		lst = new LinkedList<Keyword>();
 	}
 		
-		private void printKeywordList(LinkedList<Keyword> kLst){
-			StringBuilder sb = new StringBuilder();
-			for(int i=0;i<kLst.size();i++){
-				Keyword k= kLst.get(i);
-				if(i>0)sb.append(" ");
-				sb.append(k.toString());
-			}
-			System.out.println(sb.toString());
+	private void printKeywordList(LinkedList<Keyword> kLst){
+		StringBuilder sb = new StringBuilder();
+		for(int i=0;i<kLst.size();i++){
+			Keyword k= kLst.get(i);
+			if(i>0)sb.append(" ");
+			sb.append(k.toString());
 		}
+		System.out.println(sb.toString());
 	}
+}
 
 
 

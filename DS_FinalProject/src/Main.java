@@ -1,3 +1,4 @@
+//front-end index.jsp link：http://localhost:8080/DS_FinalProject/index.jsp
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -36,8 +37,8 @@ public class Main {//
 			{
 				String name = scanner.next();//Yu
 				double weight = scanner.nextDouble();//1.2
-				Keyword k = new Keyword(name, weight);//store key // �֤Fcount�A�n��WordCounter�h��
-				keywords.add(k);
+				//Keyword k = new Keyword(name, weight);//store key // �֤Fcount�A�n��WordCounter�h��
+				//keywords.add(k);
 			}
 			
 			tree.setPostOrderScore(keywords);
