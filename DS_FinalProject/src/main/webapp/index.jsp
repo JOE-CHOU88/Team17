@@ -100,7 +100,7 @@
             <h6 class="subtitle"> 最方便的舞蹈表演搜尋引擎</h6>
 
             <input class="search-bar" type="text" name=keyword>
-            <button class="search-btn" type="submit">s</button>
+            <button id="searchBtn" class="search-btn" type="submit" onclick="window.location.href='searchResult.jsp'">Search</button>
         </div>
 
     </div>
@@ -115,7 +115,9 @@
         <img class="img-buttombar" src="smallgreenbar.png" alt="smallgreenbar.png">
         <img class="img-buttombar" src="smallyellowbar.png" alt="smallyellowbar.png">
     </div>
-
+	
+	<!-- 連結網頁主程式 -->
+    <script src="index.js"></script>
 </body>
 
 </html>
