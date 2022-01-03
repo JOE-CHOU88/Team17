@@ -37,6 +37,9 @@ public class TestProject extends HttpServlet {
 			String requestUri = request.getRequestURI();
 			request.setAttribute("requestUri", requestUri);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
+			System.out.println(request);
+			System.out.println();
+			System.out.println(response);
 			return;
 		}
 		GoogleQuery google = new GoogleQuery(request.getParameter("keyword"));
@@ -48,6 +51,8 @@ public class TestProject extends HttpServlet {
 		for(Entry<String, String> entry : query.entrySet()) {
 		    String key = entry.getKey();
 		    String value = entry.getValue();
+		    //System.out.println(key);  //title
+		    //System.out.println(value); //url
 		    s[num][0] = key;
 		    s[num][1] = value;
 		    num++;

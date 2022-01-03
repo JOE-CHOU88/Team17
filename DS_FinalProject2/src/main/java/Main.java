@@ -9,15 +9,7 @@ import javax.net.ssl.SSLSession;
 
 public class Main {//
 	public static void main(String[] args) throws IOException {
-		try {
-			System.out.println(new GoogleQuery("NCCU").query());
-//			GoogleQuery g =new GoogleQuery("NCCU");
-//			g.query();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		WordCounter counter = new WordCounter("http://soslab.nccu.edu.tw/Welcome.html");
 		WebPage rootPage = new WebPage("http://soslab.nccu.edu.tw/Welcome.html", "Soslab");		
 		WebTree tree = new WebTree(rootPage);
 		//build childnode
@@ -35,10 +27,11 @@ public class Main {//
 			
 			for(int i =0;i<numOfKeywords;i++)
 			{
-				//String name = scanner.next();//Yu
-				//double weight = scanner.nextDouble();//1.2
-				//Keyword k = new Keyword(name, weight);//store key // �֤Fcount�A�n��WordCounter�h��
-				//keywords.add(k);
+				String name = scanner.next();//Yu
+				double weight = scanner.nextDouble();//1.2
+				int count = counter.countKeyword(name);
+				Keyword k = new Keyword(name, count, weight);//store key
+				keywords.add(k);
 			}
 			
 			tree.setPostOrderScore(keywords);
