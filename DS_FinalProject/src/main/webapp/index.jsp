@@ -101,7 +101,7 @@
 			
 			<form action='${requestUri}' method='get'>
             	<input class="search-bar" type="text" name="keyword">
-            	<button id="searchBtn" class="search-btn" type="submit">Search</button>
+            	<input type="button" id="searchBtn" class="search-btn" value="Search">
             	<% //onclick="window.location.href='searchResult.jsp'" %>
             </form>
         </div>
