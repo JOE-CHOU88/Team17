@@ -98,9 +98,12 @@
         <div class="right-card">
             <h1 class="title">舞松打狗</h1>
             <h6 class="subtitle"> 最方便的舞蹈表演搜尋引擎</h6>
-
-            <input class="search-bar" type="text" name=keyword>
-            <button id="searchBtn" class="search-btn" type="submit" onclick="window.location.href='searchResult.jsp'">Search</button>
+			<form action='${requestUri}' method='get'>
+			    <input class="search-bar" type="text" name="keyword">
+            	<input class="search-btn" type="submit" >submit</button>
+            	
+			</form>
+            
         </div>
 
     </div>
@@ -115,9 +118,7 @@
         <img class="img-buttombar" src="smallgreenbar.png" alt="smallgreenbar.png">
         <img class="img-buttombar" src="smallyellowbar.png" alt="smallyellowbar.png">
     </div>
-	
-	<!-- 連結網頁主程式 -->
-    <script src="index.js"></script>
+
 </body>
 
 </html>

@@ -86,7 +86,7 @@ public class GoogleQuery
 		HashMap<String, String> retVal = new HashMap<String, String>();
 		
 		Document doc = Jsoup.parse(content);
-//		System.out.println(doc.text());
+		System.out.println(doc.text());
 		Elements lis = doc.select("div");
 //		 System.out.println(lis);
 		lis = lis.select(".kCrYT");
@@ -108,7 +108,7 @@ public class GoogleQuery
 
 			} catch (IndexOutOfBoundsException e) {
 
-//				e.printStackTrace();
+				e.printStackTrace();
 
 			}
 
@@ -121,6 +121,7 @@ public class GoogleQuery
 		return retVal;
 
 	}
+	
 
 	
 

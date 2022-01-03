@@ -24,6 +24,15 @@
     <!-- header -->
     <!-- introSection -->
     <!-- 設定introSection 上下padding為5倍 -->
+	<%
+String[][] orderList = (String[][]) request.getAttribute("sortedQuery");
+for(int i =0 ; i < orderList.length;i++){%>
+	<a href='<%= orderList[i][1] %>'><%= orderList[i][0] %></a><br>
+	<%=orderList[i][2]%>
+	<br><br>	
+<%
+}
+%>
     <section id="introSection">
         <div class="buttombar-list">
             <img class="img-buttombar" src="smallgreenbar.png" alt="smallgreenbar.png">
