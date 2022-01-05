@@ -38,7 +38,9 @@ public class WordCounter {
 		
 		//To do a case-insensitive search, we turn the whole content and keyword into upper-case:
 		content = content.toUpperCase();
+		//System.out.println(content);
 		keyword = keyword.toUpperCase();
+		//System.out.println(keyword);
 	
 		int retVal = 0; 
 		// 1. calculates appearances of keyword
