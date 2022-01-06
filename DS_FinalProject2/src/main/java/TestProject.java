@@ -58,6 +58,7 @@ public class TestProject extends HttpServlet {
 		for(Entry<String, String> entry : query.entrySet()) {
 		    String key = entry.getKey();
 		    String value = entry.getValue();
+		    value = value.substring(7, value.indexOf("&"));
 		    System.out.println(key);  //title
 		    //System.out.println(value); //url
 		    s[num][0] = key;
@@ -65,8 +66,8 @@ public class TestProject extends HttpServlet {
 		    
 		    //construct a webpage
 		    try {
-			    page = new WebPage(value.substring(7, value.indexOf("&")), key);
-			    System.out.println(value.substring(7, value.indexOf("&")));
+			    page = new WebPage(value, key);
+			    System.out.println(value);
 			    keywords = new KeywordList();
 			    counter = new WordCounter(page.url);
 			    
