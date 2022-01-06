@@ -11,49 +11,50 @@ import javax.net.ssl.SSLSession;
 public class Main {//
 	public static void main(String[] args) throws IOException {
 		WordCounter counter = new WordCounter("https://npac-ntch.org/zh");
-		WebPage rootPage = new WebPage("http://soslab.nccu.edu.tw/Welcome.html", "Soslab");		
+		WebPage rootPage = new WebPage("http://soslab.nccu.edu.tw/Welcome.html", "Welcome");		
 		WebTree tree = new WebTree(rootPage);
 		//build childnode (at least retrieve one sublink)
-		tree.root.addChild(new WebNode(new WebPage("http://soslab.nccu.edu.tw/Publications.html","Publication")));
-		tree.root.addChild(new WebNode(new WebPage("http://soslab.nccu.edu.tw/Projects.html","Projects")));
+		tree.root.addChild(new WebNode(new WebPage("http://soslab.nccu.edu.tw/Publications.html", "Publications")));
+		tree.root.addChild(new WebNode(new WebPage("http://soslab.nccu.edu.tw/Projects.html", "Projects")));
 		tree.root.children.get(1).addChild(new WebNode(new WebPage("https://vlab.cs.ucsb.edu/stranger/", "Stranger")));
-		tree.root.addChild(new WebNode(new WebPage("http://soslab.nccu.edu.tw/Members.html", "MEMBER")));
-		tree.root.addChild(new WebNode(new WebPage("http://www3.nccu.edu.tw/~yuf/course.htm","Course")));
+		tree.root.addChild(new WebNode(new WebPage("http://soslab.nccu.edu.tw/Members.html", "Members")));
+		tree.root.addChild(new WebNode(new WebPage("http://www3.nccu.edu.tw/~yuf/course.htm", "Course")));
 		
-		//You need to change scanner into reading file
-		KeywordList lst = new KeywordList();
-		File file = new File("keyword.txt");		
-		Scanner scanner = new Scanner(file);
-	
-		while(scanner.hasNextLine()){
-			String operation = scanner.next();
-			
-			switch (operation){
-				case "add":
-					double weight = Double.parseDouble(scanner.next());
-					System.out.println(weight);
-					String name = scanner.next();
-					System.out.println(name);
-					int count = counter.countKeyword(name);
-					System.out.println(count);
-					lst.add(new Keyword(name, count, weight));
-					// lst.output();
-					System.out.println();
-					break;
-				case "sort":
-					lst.sort();
-					break;
-				case "output":
-					lst.output();
-					break;
-				default:
-					System.out.println("InvalidOperation");
-					System.out.println("^^");
-					break;
-			}	
-		}
-		
-		scanner.close();
+//		//You need to change scanner into reading file
+//		KeywordList lst = new KeywordList();
+//		File file = new File("keyword.txt");		
+//		Scanner scanner = new Scanner(file);
+//	
+//		while(scanner.hasNextLine()){
+//			String operation = scanner.next();
+//			
+//			switch (operation){
+//				case "add":
+//					double weight = Double.parseDouble(scanner.next());
+//					System.out.println(weight);
+//					String name = scanner.next();
+//					System.out.println(name);
+//					int count = counter.countKeyword(name);
+//					System.out.println(count);
+//					lst.add(new Keyword(name, count, weight));
+//					// lst.output();
+//					System.out.println();
+//					break;
+//				case "sort":
+//					lst.sort();
+//					break;
+//				case "output":
+//					lst.output();
+//					break;
+//				default:
+//					System.out.println("InvalidOperation");
+//					System.out.println("^^");
+//					break;
+//			}	
+//		}
+//		
+//		scanner.close();
+
 		//read 2 Yu 1.2 Fang 1.8 
 //		scanner = new Scanner(System.in);
 //		

@@ -7,7 +7,7 @@ public class WebPage {
 	public WordCounter counter;
 	public double score;
 	
-	public WebPage(String url,String name){
+	public WebPage(String url, String name){
 		this.url = url;
 		this.name = name;
 		this.counter = new WordCounter(url);	
