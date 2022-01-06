@@ -49,7 +49,7 @@ public class TestProject extends HttpServlet {
 			System.out.println(response);
 			return;
 		}
-		GoogleQuery google = new GoogleQuery(request.getParameter("keyword"));
+		GoogleQuery google = new GoogleQuery(request.getParameter("keyword") + "%20performance");
 		HashMap<String, String> query = google.query();
 		
 		String[][] s = new String[query.size()][2];
@@ -58,48 +58,60 @@ public class TestProject extends HttpServlet {
 		for(Entry<String, String> entry : query.entrySet()) {
 		    String key = entry.getKey();
 		    String value = entry.getValue();
-		    //System.out.println(key);  //title
+		    System.out.println(key);  //title
 		    //System.out.println(value); //url
 		    s[num][0] = key;
 		    s[num][1] = value;
 		    
 		    //construct a webpage
-		    page = new WebPage(value, key);
-		    keywords = new KeywordList();
-		    counter = new WordCounter(page.url);
-			File file = new File("keyword.txt");		
-			Scanner scanner = new Scanner(file);
-		
-			while(scanner.hasNextLine()){
-				String operation = scanner.next();
-				
-				switch (operation){
-					case "add":
-						double weight = Double.parseDouble(scanner.next());
-						System.out.println(weight);
-						String name = scanner.next();
-						System.out.println(name);
-						int count = counter.countKeyword(name);
-						System.out.println(count);
-						keywords.add(new Keyword(name, count, weight));
-						
-						// lst.output();
-						System.out.println();
-						break;
-					case "sort":
-						keywords.sort();
-						break;
-					case "output":
-						keywords.output();
-						break;
-					default:
-						System.out.println("InvalidOperation");
-						System.out.println("^^");
-						break;
-				}	
-			}
+		    try {
+			    page = new WebPage(value.substring(7, value.indexOf("&")), key);
+			    System.out.println(value.substring(7, value.indexOf("&")));
+			    keywords = new KeywordList();
+			    counter = new WordCounter(page.url);
+			    
+			    //establish keyword list (keywords)
+				File file = new File("C:\\Users\\Danny\\git\\team17c\\DS_FinalProject2\\keyword.txt");		
+				Scanner scanner = new Scanner(file);
 			
-			scanner.close();
+				while(scanner.hasNextLine()){
+					String operation = scanner.next();
+					
+					switch (operation){
+						case "add":
+							double weight = Double.parseDouble(scanner.next());
+							//System.out.print(weight);
+							String name = scanner.next();
+							//System.out.print(name);
+							int count = counter.countKeyword(name);
+							//System.out.print(count);
+							keywords.add(new Keyword(name, count, weight));
+							System.out.printf("%.2f %s %d", weight, name, count);
+							
+							// lst.output();
+							System.out.println();
+							break;
+						case "sort":
+							keywords.sort();
+							break;
+						case "output":
+							keywords.output();
+							break;
+						default:
+							System.out.println("InvalidOperation");
+							System.out.println("^^");
+							break;
+					}	
+				}
+				
+				scanner.close();
+				
+				//construct a webpage (continue)
+				
+				page.setScore(keywords);
+		    }catch(Exception e) {
+				System.out.println("URL may not be linked or other errors!");
+			}
 		    num++;
 		}
 		request.getRequestDispatcher("searchResult.jsp")
