@@ -5,6 +5,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.Map.Entry;
 
 import javax.servlet.ServletContext;
@@ -49,7 +52,10 @@ public class TestProject extends HttpServlet {
 			System.out.println(response);
 			return;
 		}
-		GoogleQuery google = new GoogleQuery(request.getParameter("keyword") + "%20performance");
+		
+		
+		GoogleQuery google = new GoogleQuery(request.getParameter("keyword") + "%20performance"); //%20兩廳院%20現代舞
+		System.out.println("User input keyword: " + request.getParameter("keyword"));
 		HashMap<String, String> query = google.query();
 		
 		String[][] s = new String[query.size()][2];
@@ -59,61 +65,83 @@ public class TestProject extends HttpServlet {
 		    String key = entry.getKey();
 		    String value = entry.getValue();
 		    value = value.substring(7, value.indexOf("&"));
+		    System.out.println();
 		    System.out.println(key);  //title
 		    //System.out.println(value); //url
 		    s[num][0] = key;
 		    s[num][1] = value;
 		    
-		    //construct a webpage
-		    try {
-			    page = new WebPage(value, key);
-			    System.out.println(value);
-			    keywords = new KeywordList();
-			    counter = new WordCounter(page.url);
-			    
-			    //establish keyword list (keywords)
-				File file = new File("C:\\Users\\Danny\\git\\team17c\\DS_FinalProject2\\keyword.txt");		
-				Scanner scanner = new Scanner(file);
-			
-				while(scanner.hasNextLine()){
-					String operation = scanner.next();
+		  //count the running time of each web site. If too long, then stop
+	    	long startTime = System.currentTimeMillis() / 1000;
+	    	long endTime   = startTime + 10;
+//	    	while ((System.currentTimeMillis() / 1000) < endTime) {
+//		    ExecutorService executor = Executors.newSingleThreadExecutor();
+//	        Future<String> future = executor.submit(new Task());
+			    //construct a webpage
+			    try {		    	
+			    	//try to decode the url
+			    	URLDecode decoder = new URLDecode(value);
+			    	String decodedValue = decoder.decode();
+			    	
+				    page = new WebPage(decodedValue, key);
+				    System.out.println(decodedValue);
+				    keywords = new KeywordList();
+				    counter = new WordCounter(page.url);
+				    
+				    //establish keyword list (keywords)
+					File file = new File("C:\\Users\\Danny\\git\\team17c\\DS_FinalProject2\\keyword.txt");		
+					Scanner scanner = new Scanner(file);
+				
+					while(scanner.hasNextLine()){
+						String operation = scanner.next();
+						
+						switch (operation){
+							case "add":
+								double weight = Double.parseDouble(scanner.next());
+								//System.out.print(weight);
+								String name = scanner.next();
+								//System.out.print(name);
+								int count = counter.countKeyword(name);
+								// runtime error control
+								if(count == -1) {
+									throw new Exception("runtime error");
+								}
+								//System.out.print(count);
+								keywords.add(new Keyword(name, count, weight));
+								System.out.printf("%.2f %s %d", weight, name, count);
+								
+								// lst.output();
+								System.out.println();
+								break;
+							case "sort":
+								keywords.sort();
+								break;
+							case "output":
+								keywords.output();
+								break;
+							default:
+								System.out.println("InvalidOperation");
+								System.out.println("^^");
+								break;
+						}	
+					}
 					
-					switch (operation){
-						case "add":
-							double weight = Double.parseDouble(scanner.next());
-							//System.out.print(weight);
-							String name = scanner.next();
-							//System.out.print(name);
-							int count = counter.countKeyword(name);
-							//System.out.print(count);
-							keywords.add(new Keyword(name, count, weight));
-							System.out.printf("%.2f %s %d", weight, name, count);
-							
-							// lst.output();
-							System.out.println();
-							break;
-						case "sort":
-							keywords.sort();
-							break;
-						case "output":
-							keywords.output();
-							break;
-						default:
-							System.out.println("InvalidOperation");
-							System.out.println("^^");
-							break;
-					}	
+					scanner.close();
+			    	
+					//count the running time of each website within 20 sec
+					endTime   = System.currentTimeMillis() / 1000;
+			    	long totalTime = endTime - startTime;
+			    	System.out.println("Total run time: " + totalTime + " sec");
+					
+					//construct a webpage (continue)
+					
+					page.setScore(keywords);
+			    }catch(Exception e) {		    	
+					System.out.println("URL may not be linked or other errors!");
+				}finally{
+					num++;
 				}
-				
-				scanner.close();
-				
-				//construct a webpage (continue)
-				
-				page.setScore(keywords);
-		    }catch(Exception e) {
-				System.out.println("URL may not be linked or other errors!");
-			}
-		    num++;
+	    	//}
 		}
 		request.getRequestDispatcher("searchResult.jsp")
 		 .forward(request, response); 

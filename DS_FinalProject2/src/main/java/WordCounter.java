@@ -23,8 +23,15 @@ public class WordCounter {
 	
 		String line = null;
 		
+		//count the running time of fetching each web site. If too long, then stop
+		long startTime = System.currentTimeMillis() / 1000;
+		long endTime   = startTime + 10;
+		
 		while ((line = br.readLine()) != null){
 		    retVal = retVal + line + "\n";
+		    if((System.currentTimeMillis() / 1000) > endTime) {
+		    	return "runtime error";
+		    }
 		}
 	
 		return retVal;
@@ -35,22 +42,25 @@ public class WordCounter {
 		    content = fetchContent();
 		    //System.out.println(content);
 		}
-		
-		//To do a case-insensitive search, we turn the whole content and keyword into upper-case:
-		content = content.toUpperCase();
-		//System.out.println(content);
-		keyword = keyword.toUpperCase();
-		//System.out.println(keyword);
-	
-		int retVal = 0; 
-		// 1. calculates appearances of keyword
-		while(content.indexOf(keyword) != -1) {
-			content = content.substring(content.indexOf(keyword) + keyword.length());
-			retVal += 1;
+		if (content != "runtime error") {
+			//To do a case-insensitive search, we turn the whole content and keyword into upper-case:
+			content = content.toUpperCase();
 			//System.out.println(content);
-			//System.out.println("----------------");
-		}
+			keyword = keyword.toUpperCase();
+			//System.out.println(keyword);
 		
-		return retVal;
+			int retVal = 0; 
+			// 1. calculates appearances of keyword
+			while(content.indexOf(keyword) != -1) {
+				content = content.substring(content.indexOf(keyword) + keyword.length());
+				retVal += 1;
+				//System.out.println(content);
+				//System.out.println("----------------");
+			}
+			
+			return retVal;
+		}else {
+			return -1;
+		}
     }
 }

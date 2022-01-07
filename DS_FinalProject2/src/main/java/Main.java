@@ -20,6 +20,7 @@ public class Main {//
 		tree.root.addChild(new WebNode(new WebPage("http://soslab.nccu.edu.tw/Members.html", "Members")));
 		tree.root.addChild(new WebNode(new WebPage("http://www3.nccu.edu.tw/~yuf/course.htm", "Course")));
 		
+		
 //		//You need to change scanner into reading file
 //		KeywordList lst = new KeywordList();
 //		File file = new File("keyword.txt");		
