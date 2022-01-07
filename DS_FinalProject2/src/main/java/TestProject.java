@@ -2,7 +2,6 @@
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
@@ -89,7 +88,9 @@ public class TestProject extends HttpServlet {
 				    counter = new WordCounter(page.url);
 				    
 				    //establish keyword list (keywords)
-					File file = new File("C:\\Users\\Danny\\git\\team17c\\DS_FinalProject2\\keyword.txt");		
+				    String pwdJ = "C:\\Users\\Danny\\git\\team17c\\DS_FinalProject2\\keyword.txt";
+				    String pwdL = "/Users/ashleylai/git/Team17/DS_FinalProject2/keyword.txt";
+					File file = new File(pwdJ);		
 					Scanner scanner = new Scanner(file);
 				
 					while(scanner.hasNextLine()){
@@ -125,7 +126,6 @@ public class TestProject extends HttpServlet {
 								break;
 						}	
 					}
-					
 					scanner.close();
 			    	
 					//count the running time of each website within 20 sec
