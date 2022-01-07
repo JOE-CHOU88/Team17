@@ -151,7 +151,7 @@ public class KeywordList {
 		    results += k.count * k.weight;
 		}
 		
-		System.out.println(results);
+		System.out.println("Total score: " + results);
 	}
 	
 	public void deleteIndex(int i){
