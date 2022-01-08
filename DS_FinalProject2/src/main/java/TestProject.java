@@ -53,13 +53,18 @@ public class TestProject extends HttpServlet {
 		}
 		
 		
-		GoogleQuery google = new GoogleQuery(request.getParameter("keyword") + "%20performance"); //%20兩廳院%20現代舞
+		GoogleQuery google = new GoogleQuery(request.getParameter("keyword") + "%20performance%20modern%20dance"); //%20兩廳院%20現代舞
+//		String k = java.net.URLEncoder.encode(request.getParameter("keyword"), "UTF-8");
+//		System.out.println("---------");
+//		System.out.println(k);
+//		System.out.println("---------");
 		System.out.println("User input keyword: " + request.getParameter("keyword"));
 		HashMap<String, String> query = google.query();
 		
 		String[][] s = new String[query.size()][2];
 		request.setAttribute("query", s);
 		int num = 0;
+		WebList webList = new WebList();
 		for(Entry<String, String> entry : query.entrySet()) {
 		    String key = entry.getKey();
 		    String value = entry.getValue();
@@ -83,6 +88,8 @@ public class TestProject extends HttpServlet {
 			    	String decodedValue = decoder.decode();
 			    	
 				    page = new WebPage(decodedValue, key);
+				    webList.getLst().add(page);
+				    webList.add(page);
 				    System.out.println(decodedValue);
 				    keywords = new KeywordList();
 				    counter = new WordCounter(page.url);
@@ -141,6 +148,28 @@ public class TestProject extends HttpServlet {
 				}
 	    	//}
 		}
+		System.out.println();
+		System.out.println("webList size: " + webList.size());
+		System.out.println();
+		webList.sort();
+//		webList.output();
+//		System.out.println(webList.size());
+		
+		String[][] sortedWebList = new String[webList.getLst().size()][3];
+		request.setAttribute("sortedWebList", sortedWebList);
+		int count=0;
+		for(int j=webList.getLst().size()-1;j>=0;j--) {
+			sortedWebList[count][0] = webList.getLst().get(j).name;
+			System.out.println(sortedWebList[count][0]);
+			sortedWebList[count][1] = webList.getLst().get(j).url;
+			System.out.println(sortedWebList[count][1]);
+			sortedWebList[count][2] = "" + webList.getLst().get(j).score;
+			System.out.println("Each web total score: " + sortedWebList[count][2]);
+			System.out.println();
+			count++;
+		}
+		
+		
 		request.getRequestDispatcher("searchResult.jsp")
 		 .forward(request, response); 
 		

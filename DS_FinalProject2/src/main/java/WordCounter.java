@@ -18,8 +18,8 @@ public class WordCounter {
     	URL url = new URL(this.urlStr);
 		URLConnection conn = url.openConnection();
 		InputStream in = conn.getInputStream();
-		System.out.println("test!!!!!!!!!!!!!!!!!");
-		System.out.println(in);
+		//System.out.println("test!!!!!!!!!!!!!!!!!");
+		//System.out.println(in);
 		BufferedReader br = new BufferedReader(new InputStreamReader(in));
 	
 		String retVal = "";

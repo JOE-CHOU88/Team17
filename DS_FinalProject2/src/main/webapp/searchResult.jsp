@@ -22,13 +22,17 @@
 
 <body>
 	<%
-		String[][] orderList = (String[][]) request.getAttribute("query");
+		String[][] orderList = (String[][]) request.getAttribute("sortedWebList");
+		//System.out.println(orderList[0][0]); //title
+		//System.out.println(orderList[0][1]); //url
 		for (int i = 0; i < orderList.length; i++) {
-			String s=orderList[i][1];
-			s=s.substring(7);
+			String url = orderList[i][1];
+			String title = orderList[i][0];
+			String score =  orderList[i][2];
+			//s=s.substring(7);
 		%>
 		
-		<a href='<%=s%>'><%=orderList[i][0]%> </a> <br>³sµ²<br>
+		<a href='<%=url%>'><%=title%> </a> <br>Total score: <%=score%><br>
 		<br>
 		<%
 }

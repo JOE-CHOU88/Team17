@@ -143,7 +143,7 @@ public class KeywordList {
 		printKeywordList(found);	
 	}
 	
-	public void outputScore(){
+	public float outputScore(){
 		float results = 0;
 		for(int i=0;i<lst.size();i++){
 		    Keyword k = lst.get(i);
@@ -153,6 +153,7 @@ public class KeywordList {
 		
 		System.out.printf("Total score: %.2f", results);
 		System.out.println();
+		return results;
 	}
 	
 	public void deleteIndex(int i){
