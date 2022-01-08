@@ -13,10 +13,13 @@ public class WordCounter {
     	this.urlStr = urlStr;
     }
     
-    private String fetchContent() throws IOException{
-		URL url = new URL(this.urlStr);
+    private String fetchContent() throws IOException, RuntimeException{
+		
+    	URL url = new URL(this.urlStr);
 		URLConnection conn = url.openConnection();
 		InputStream in = conn.getInputStream();
+		System.out.println("test!!!!!!!!!!!!!!!!!");
+		System.out.println(in);
 		BufferedReader br = new BufferedReader(new InputStreamReader(in));
 	
 		String retVal = "";
@@ -30,19 +33,23 @@ public class WordCounter {
 		while ((line = br.readLine()) != null){
 		    retVal = retVal + line + "\n";
 		    if((System.currentTimeMillis() / 1000) > endTime) {
-		    	return "runtime error";
+		    	throw new RuntimeException("runtime error");
+		    	//return "runtime error";
 		    }
+//		    System.out.println("-------------------------");
+//		    System.out.println(retVal);
+//		    System.out.println("-------------------------");
 		}
 	
 		return retVal;
     }
     
-    public int countKeyword(String keyword) throws IOException{
+    public int countKeyword(String keyword) throws IOException, RuntimeException{
 		if (content == null){
 		    content = fetchContent();
 		    //System.out.println(content);
 		}
-		if (content != "runtime error") {
+//		if (content != "runtime error") {
 			//To do a case-insensitive search, we turn the whole content and keyword into upper-case:
 			content = content.toUpperCase();
 			//System.out.println(content);
@@ -59,8 +66,8 @@ public class WordCounter {
 			}
 			
 			return retVal;
-		}else {
-			return -1;
-		}
+//		}else {
+//			return -1;
+//		}
     }
 }

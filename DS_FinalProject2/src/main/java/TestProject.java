@@ -37,7 +37,7 @@ public class TestProject extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, RuntimeException {
 		// TODO Auto-generated method stub
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
@@ -103,10 +103,6 @@ public class TestProject extends HttpServlet {
 								String name = scanner.next();
 								//System.out.print(name);
 								int count = counter.countKeyword(name);
-								// runtime error control
-								if(count == -1) {
-									throw new Exception("runtime error");
-								}
 								//System.out.print(count);
 								keywords.add(new Keyword(name, count, weight));
 								System.out.printf("%.2f %s %d", weight, name, count);
@@ -136,6 +132,8 @@ public class TestProject extends HttpServlet {
 					//construct a webpage (continue)
 					
 					page.setScore(keywords);
+			    }catch(RuntimeException e) {
+			    	System.out.println("runtime error");
 			    }catch(Exception e) {		    	
 					System.out.println("URL may not be linked or other errors!");
 				}finally{

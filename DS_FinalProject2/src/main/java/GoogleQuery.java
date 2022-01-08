@@ -61,10 +61,16 @@ public class GoogleQuery
 
 		BufferedReader bufReader = new BufferedReader(inReader);
 		String line = null;
-
+		
+		//count the running time of fetching each web site. If too long, then stop
+		long startTime = System.currentTimeMillis() / 1000;
+		long endTime   = startTime + 10;
 		while((line=bufReader.readLine())!=null)
 		{
 			retVal += line;
+			if((System.currentTimeMillis() / 1000) > endTime) {
+		    	return "runtime error";
+		    }
 
 		}
 		return retVal;
@@ -80,43 +86,47 @@ public class GoogleQuery
 			content= fetchContent();
 
 		}
-
-		HashMap<String, String> retVal = new HashMap<String, String>();
 		
-		Document doc = Jsoup.parse(content);
-//		System.out.println(doc.text());
-		Elements lis = doc.select("div");
-//		 System.out.println(lis);
-		lis = lis.select(".kCrYT");
-//		 System.out.println(lis.size());
-		
-		
-		for(Element li : lis)
-		{
-			try 
-
-			{
-				String citeUrl = li.select("a").get(0).attr("href");
-				String title = li.select("a").get(0).select(".vvjwJb").text();
-				if(title.equals("")) {
-					continue;
-				}
-				System.out.println(title + ","+citeUrl);
-				retVal.put(title, citeUrl);
-
-			} catch (IndexOutOfBoundsException e) {
-
-//				e.printStackTrace();
-
-			}
-
+		if (content != "runtime error") {
+			HashMap<String, String> retVal = new HashMap<String, String>();
 			
-
+			Document doc = Jsoup.parse(content);
+	//		System.out.println(doc.text());
+			Elements lis = doc.select("div");
+	//		 System.out.println(lis);
+			lis = lis.select(".kCrYT");
+	//		 System.out.println(lis.size());
+			
+			
+			for(Element li : lis)
+			{
+				try 
+	
+				{
+					String citeUrl = li.select("a").get(0).attr("href");
+					String title = li.select("a").get(0).select(".vvjwJb").text();
+					if(title.equals("")) {
+						continue;
+					}
+					System.out.println(title + ","+citeUrl);
+					retVal.put(title, citeUrl);
+	
+				} catch (IndexOutOfBoundsException e) {
+	
+	//				e.printStackTrace();
+	
+				}
+	
+				
+	
+			}
+	
+			
+	
+			return retVal;
+		}else {
+			return null;
 		}
-
-		
-
-		return retVal;
 
 	}
 
