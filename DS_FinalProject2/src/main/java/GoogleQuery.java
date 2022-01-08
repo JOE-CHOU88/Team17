@@ -95,7 +95,10 @@ public class GoogleQuery
 			Elements lis = doc.select("div");
 	//		 System.out.println(lis);
 			lis = lis.select(".kCrYT");
-	//		 System.out.println(lis.size());
+//			System.out.println("----------------------------");
+//			System.out.println(lis);
+//			System.out.println("----------------------------");
+	//		System.out.println(lis.size());
 			
 			
 			for(Element li : lis)

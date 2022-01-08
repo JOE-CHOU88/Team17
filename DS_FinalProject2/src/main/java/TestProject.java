@@ -53,7 +53,10 @@ public class TestProject extends HttpServlet {
 		}
 		
 		
-		GoogleQuery google = new GoogleQuery(request.getParameter("keyword") + "%20performance%20modern%20dance"); //%20兩廳院%20現代舞
+		//@SuppressWarnings("deprecation")
+		String keyword = request.getParameter("keyword");
+		System.out.println("keyword" + keyword);
+		GoogleQuery google = new GoogleQuery(keyword + "%20藝文中心"); //%20兩廳院%20現代舞
 //		String k = java.net.URLEncoder.encode(request.getParameter("keyword"), "UTF-8");
 //		System.out.println("---------");
 //		System.out.println(k);
@@ -90,6 +93,7 @@ public class TestProject extends HttpServlet {
 				    page = new WebPage(decodedValue, key);
 				    webList.getLst().add(page);
 				    webList.add(page);
+				    
 				    System.out.println(decodedValue);
 				    keywords = new KeywordList();
 				    counter = new WordCounter(page.url);

@@ -17,7 +17,7 @@ public class URLDecode {
 	        String url = URLDecoder.decode(encodedURL, "UTF-8");
 	
 	        // 輸出結果
-	        //System.out.println("Decode result: " + url);
+	        System.out.println("Decode result: " + url);
 	        return url;
 	
 	    } catch (UnsupportedEncodingException e) {
