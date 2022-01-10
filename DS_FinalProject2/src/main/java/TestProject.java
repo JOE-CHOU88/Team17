@@ -101,7 +101,7 @@ public class TestProject extends HttpServlet {
 				    //establish keyword list (keywords)
 				    String pwdJ = "C:\\Users\\Danny\\git\\team17c\\DS_FinalProject2\\keyword.txt";
 				    String pwdL = "/Users/ashleylai/git/Team17/DS_FinalProject2/keyword.txt";
-					File file = new File(pwdJ);		
+					File file = new File(pwdL);		
 					Scanner scanner = new Scanner(file);
 				
 					while(scanner.hasNextLine()){
@@ -162,12 +162,17 @@ public class TestProject extends HttpServlet {
 		String[][] sortedWebList = new String[webList.getLst().size()][3];
 		request.setAttribute("sortedWebList", sortedWebList);
 		int count=0;
+		int maxSizeOfTitle=25;
 		for(int j=webList.getLst().size()-1;j>=0;j--) {
-			sortedWebList[count][0] = webList.getLst().get(j).name;
+			if(webList.getLst().get(j).name.length() > maxSizeOfTitle) {
+				sortedWebList[count][0] = webList.getLst().get(j).name.substring(0,20) + "...";
+			}else {
+				sortedWebList[count][0] = webList.getLst().get(j).name;
+			}
 			System.out.println(sortedWebList[count][0]);
 			sortedWebList[count][1] = webList.getLst().get(j).url;
 			System.out.println(sortedWebList[count][1]);
-			sortedWebList[count][2] = "" + webList.getLst().get(j).score;
+			sortedWebList[count][2] = String.format("%.1f",webList.getLst().get(j).score);
 			System.out.println("Each web total score: " + sortedWebList[count][2]);
 			System.out.println();
 			count++;
