@@ -24,9 +24,7 @@ public class TestProject extends HttpServlet {
 	private WordCounter counter;
 	
 	private static final long serialVersionUID = 1L;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public TestProject() {
         super();
         // TODO Auto-generated constructor stub
@@ -50,7 +48,7 @@ public class TestProject extends HttpServlet {
 		
 		
 		//@SuppressWarnings("deprecation")
-		//System.out.println("1<--------->");
+		System.out.println("1<--------->");
 		String keyword = request.getParameter("keyword");
 		System.out.println("keyword: " + keyword);
 		GoogleQuery google = new GoogleQuery(keyword + "%20藝文中心"); //%20兩廳院%20現代舞
@@ -98,7 +96,7 @@ public class TestProject extends HttpServlet {
 				    //establish keyword list (keywords)
 				    String pwdJ = "C:\\Users\\Danny\\git\\team17c\\DS_FinalProject2\\keyword.txt";
 				    String pwdL = "/Users/ashleylai/git/Team17/DS_FinalProject2/keyword.txt";
-					File file = new File(pwdL);		
+					File file = new File(pwdJ);		
 					Scanner scanner = new Scanner(file);
 				
 					while(scanner.hasNextLine()){
@@ -176,8 +174,7 @@ public class TestProject extends HttpServlet {
 		}
 		
 		
-		request.getRequestDispatcher("searchResult.jsp")
-		 .forward(request, response); 
+		request.getRequestDispatcher("searchResult.jsp").forward(request, response); 
 		
 	}
 
