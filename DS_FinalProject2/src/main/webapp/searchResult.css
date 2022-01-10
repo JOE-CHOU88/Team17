@@ -7,6 +7,10 @@
     box-sizing: border-box;
 }
 
+a {
+	color: #094e3d;
+}
+
 body {
     max-width: 100%;
     overflow-x: hidden;
