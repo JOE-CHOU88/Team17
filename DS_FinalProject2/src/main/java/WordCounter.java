@@ -46,6 +46,8 @@ public class WordCounter {
     
     public int countKeyword(String keyword) throws IOException, RuntimeException{
 		if (content == null){
+			//test
+			//System.out.println("urlStr: "+urlStr);
 		    content = fetchContent();
 		    //System.out.println(content);
 		}

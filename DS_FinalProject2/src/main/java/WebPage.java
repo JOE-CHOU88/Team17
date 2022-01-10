@@ -16,11 +16,13 @@ public class WebPage {
 	public void setScore(KeywordList keywords) throws IOException{
 		score = 0;
 //		3.calculate score
-//		for(int i=0; i<keywords; i++){	
-//			score += k.weight * counter.countKeyword(k.name);
-//			// System.out.println(score);
-//		}
-		score=keywords.outputScore();
+		
+		for(Keyword k :keywords.lst()){	
+			score += k.weight * counter.countKeyword(k.name);
+			// System.out.println(score);
+		}
+		
+		//score=keywords.outputScore();
 		
 	}
 
