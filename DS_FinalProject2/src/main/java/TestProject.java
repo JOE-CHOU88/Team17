@@ -1,5 +1,6 @@
 //http://localhost:8080/DS_FinalProject2/TestProject
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -27,6 +28,25 @@ public class TestProject extends HttpServlet {
 
     public TestProject() {
         super();
+        keywords = new KeywordList();
+        try {
+	        String pwdJ = "C:\\Users\\Danny\\git\\team17c\\DS_FinalProject2\\keyword.txt";
+		    String pwdL = "/Users/ashleylai/git/Team17/DS_FinalProject2/keyword.txt";
+			File file = new File(pwdL);		
+			Scanner scanner = new Scanner(file);
+		
+			while(scanner.hasNextLine()){
+				
+				double weight = Double.parseDouble(scanner.next());
+				String name = scanner.next();
+				keywords.add(new Keyword(name, weight));
+				//test
+				System.out.printf("%.2f %s\n", weight, name);
+			}
+			scanner.close();
+        }catch(FileNotFoundException e){
+        	System.out.println(e.getMessage());
+        }
         // TODO Auto-generated constructor stub
     }
 
@@ -59,8 +79,8 @@ public class TestProject extends HttpServlet {
 		System.out.println("User input keyword: " + request.getParameter("keyword"));
 		HashMap<String, String> query = google.query();
 		
-		String[][] s = new String[query.size()][2];
-		request.setAttribute("query", s);
+		//String[][] s = new String[query.size()][2];
+		//request.setAttribute("query", s);
 		int num = 0;
 		WebList webList = new WebList();
 		for(Entry<String, String> entry : query.entrySet()) {
@@ -70,8 +90,8 @@ public class TestProject extends HttpServlet {
 		    System.out.println();
 		    System.out.println(key);  //title
 		    //System.out.println(value); //url
-		    s[num][0] = key;
-		    s[num][1] = value;
+		    //s[num][0] = key;
+		    //s[num][1] = value;
 		    
 		  //count the running time of each web site. If too long, then stop
 	    	long startTime = System.currentTimeMillis() / 1000;
@@ -89,55 +109,47 @@ public class TestProject extends HttpServlet {
 				    webList.getLst().add(page);
 				    webList.add(page);
 				    
-				    System.out.println(decodedValue);
-				    keywords = new KeywordList();
+				    //test
+				    System.out.println("decodedValue: "+decodedValue);
 				    counter = new WordCounter(page.url);
 				    
-				    //establish keyword list (keywords)
-				    String pwdJ = "C:\\Users\\Danny\\git\\team17c\\DS_FinalProject2\\keyword.txt";
-				    String pwdL = "/Users/ashleylai/git/Team17/DS_FinalProject2/keyword.txt";
-					File file = new File(pwdJ);		
-					Scanner scanner = new Scanner(file);
-				
-					while(scanner.hasNextLine()){
-						String operation = scanner.next();
-						
-						switch (operation){
-							case "add":
-								double weight = Double.parseDouble(scanner.next());
-								//System.out.print(weight);
-								String name = scanner.next();
-								//System.out.print(name);
-								int count = counter.countKeyword(name);
-								//System.out.print(count);
-								keywords.add(new Keyword(name, count, weight));
-								System.out.printf("%.2f %s %d", weight, name, count);
-								//System.out.println("3<--------->");
-								// lst.output();
-								System.out.println();
-								break;
-							case "sort":
-								keywords.sort();
-								break;
-							case "output":
-								keywords.output();
-								break;
-							default:
-								System.out.println("InvalidOperation");
-								System.out.println("^^");
-								break;
-						}	
+				   
+				    WebTree tree = new WebTree(page);
+				    HtmlMatcher matcher = new HtmlMatcher(page.url);
+				    HashMap<String, String> children = matcher.match();
+					String[][] cs = new String[children.size()][2];
+					int cnum=0;
+					for(Entry<String, String> entry2 : children.entrySet()) {
+					    String ckey = entry2.getKey();
+					    String cvalue = entry2.getValue();
+					    System.out.println("TestProject126:");
+					    System.out.println(ckey);  //title
+					    System.out.println(cvalue); //url
+					    tree.root.addChild(new WebNode(new WebPage(cvalue, ckey)));
+					    cs[cnum][0] = ckey;
+					    cs[cnum][1] = cvalue;
+					    cnum++;
 					}
-					scanner.close();
-			    	
+					
+					/*
+					for (int i=0; i<cs.size(); i++) {
+						//test
+						System.out.println("cs[i][1]: "+cs[i][1]);
+						tree.root.addChild(new WebNode(new WebPage(cs[i][1], cs[i][0])));
+						//page.setScore(keywords);
+					}
+					*/
+					tree.setPostOrderScore(keywords);
+					//test
+					System.out.println("tree.eularPrintTree()");
+					tree.eularPrintTree();
+				    
 					//count the running time of each website within 20 sec
 					endTime   = System.currentTimeMillis() / 1000;
 			    	long totalTime = endTime - startTime;
 			    	System.out.println("Total run time: " + totalTime + " sec");
 					
-					//construct a webpage (continue)
-					
-					page.setScore(keywords);
+					//page.setScore(keywords);
 			    }catch(RuntimeException e) {
 			    	System.out.println("runtime error");
 			    }catch(Exception e) {		    	
@@ -159,11 +171,13 @@ public class TestProject extends HttpServlet {
 		int count=0;
 		int maxSizeOfTitle=25;
 		for(int j=webList.getLst().size()-1;j>=0;j--) {
+			
 			if(webList.getLst().get(j).name.length() > maxSizeOfTitle) {
-				sortedWebList[count][0] = webList.getLst().get(j).name.substring(0,20) + "...";
+				sortedWebList[count][0] = webList.getLst().get(j).name.substring(0,maxSizeOfTitle) + "...";
 			}else {
 				sortedWebList[count][0] = webList.getLst().get(j).name;
 			}
+			
 			System.out.println(sortedWebList[count][0]);
 			sortedWebList[count][1] = webList.getLst().get(j).url;
 			System.out.println(sortedWebList[count][1]);

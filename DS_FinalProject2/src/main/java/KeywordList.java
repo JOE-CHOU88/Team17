@@ -1,16 +1,17 @@
-import java.util.LinkedList;
+import java.util.ArrayList;
 public class KeywordList {
 	
 	
-	private LinkedList<Keyword> lst;
+	private ArrayList<Keyword> lst;
 	
 	public KeywordList(){
-		this.lst = new LinkedList<Keyword>();
+		this.lst = new ArrayList<Keyword>();
 		
 	}
 	public void add(Keyword keyword){
 		//add keyword to proper index base on its count . DECENDING SORT BY COUNT AND WEIGHT
 		//printKeywordList(lst) : you can check if elements are sorted 
+		/*
 		for(int i=0; i<lst.size();i++){
 			Keyword k= lst.get(i);	
 			if(keyword.count <= k.count){
@@ -26,10 +27,16 @@ public class KeywordList {
 				}	
 			}	
 		}
+		*/
 		lst.add(keyword);
 //		printKeywordList(lst);
 	
 	}
+	public ArrayList<Keyword> lst() {
+		return lst;
+	}
+}
+/*
 	public void find(String s){
 		int maxValue = -1;
 		int maxIndex = -1;
@@ -142,7 +149,7 @@ public class KeywordList {
 		
 		printKeywordList(found);	
 	}
-	
+
 	public float outputScore(){
 		float results = 0;
 		for(int i=0;i<lst.size();i++){
@@ -305,4 +312,10 @@ public class KeywordList {
 			
 			System.out.println(sb.toString());	
 		}
+		
+		public int size() {
+			return lst.size();
+		}
+		
 }
+*/
