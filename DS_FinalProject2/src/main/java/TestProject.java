@@ -54,13 +54,14 @@ public class TestProject extends HttpServlet {
 		
 		
 		//@SuppressWarnings("deprecation")
+		//System.out.println("1<--------->");
 		String keyword = request.getParameter("keyword");
-		System.out.println("keyword" + keyword);
+		System.out.println("keyword: " + keyword);
 		GoogleQuery google = new GoogleQuery(keyword + "%20藝文中心"); //%20兩廳院%20現代舞
 //		String k = java.net.URLEncoder.encode(request.getParameter("keyword"), "UTF-8");
 //		System.out.println("---------");
 //		System.out.println(k);
-//		System.out.println("---------");
+		//System.out.println("2<--------->");
 		System.out.println("User input keyword: " + request.getParameter("keyword"));
 		HashMap<String, String> query = google.query();
 		
@@ -117,7 +118,7 @@ public class TestProject extends HttpServlet {
 								//System.out.print(count);
 								keywords.add(new Keyword(name, count, weight));
 								System.out.printf("%.2f %s %d", weight, name, count);
-								
+								//System.out.println("3<--------->");
 								// lst.output();
 								System.out.println();
 								break;

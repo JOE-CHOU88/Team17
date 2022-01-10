@@ -75,8 +75,6 @@
 		//System.out.println(orderList[0][0]); //title
 		//System.out.println(orderList[0][1]); //url
 		for (int i = 0; i < orderList.length; i+=3) {
-			int maxSizeOfTitle=20;
-			String title = "";
 			//String url = orderList[i][1];
 			//String title = orderList[i][0];
 			//String score =  orderList[i][2];
@@ -85,13 +83,6 @@
         
         <div class="container">
             <div class="row">
-<%/*
-			if(orderList[i][0].length()>maxSizeOfTitle) {
-				title = orderList[i][0].substring(0,maxSizeOfTitle) + "...";
-			}else{
-				title = orderList[i][0];
-			}
-*/%>
                 <div class="col-md-4">
                     <div class="work-box">
                         <div class="icon text-primary py-3">
@@ -106,14 +97,7 @@
                             </p>
                         </div>
                     </div>
-                </div>
-<%/*
-			if(orderList[i+1][0].length()>maxSizeOfTitle) {
-				title = orderList[i+1][0].substring(0,maxSizeOfTitle) + "...";
-			}else{
-				title = orderList[i+1][0];
-			}
-*/%>               
+                </div>               
                 <div class="col-md-4">
                     <div class="work-box">
                         <div class="icon text-primary py-3">
@@ -126,13 +110,6 @@
                         </p>
                     </div>
                 </div>
-<%/*			
-			if(orderList[i+2][0].length()>maxSizeOfTitle) {
-				title = orderList[i+2][0].substring(0,maxSizeOfTitle) + "...";
-			}else{
-				title = orderList[i+2][0];
-			}
-*/%>
                 <div class="col-md-4">
                     <div class="work-box">
                         <div class="icon text-primary py-3">
@@ -140,7 +117,7 @@
                         </div>
                         <div>
                             <p>
-                                <strong><a href='<%=orderList[i+1][1]%>'><%=orderList[i+2][0]%> </a><br></strong>
+                                <strong><a href='<%=orderList[i+2][1]%>'><%=orderList[i+2][0]%> </a><br></strong>
                             	<br>Total score: <%=orderList[i+2][2]%><br>
                                 Host:<br>Place:<br>Price:<br>Time:
                             </p>
