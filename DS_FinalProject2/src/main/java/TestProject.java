@@ -166,7 +166,7 @@ public class TestProject extends HttpServlet {
 		int maxSizeOfTitle=25;
 		for(int j=webList.getLst().size()-1;j>=0;j--) {
 			if(webList.getLst().get(j).name.length() > maxSizeOfTitle) {
-				sortedWebList[count][0] = webList.getLst().get(j).name.substring(0,20) + "...";
+				sortedWebList[count][0] = webList.getLst().get(j).name.substring(0,maxSizeOfTitle) + "...";
 			}else {
 				sortedWebList[count][0] = webList.getLst().get(j).name;
 			}
