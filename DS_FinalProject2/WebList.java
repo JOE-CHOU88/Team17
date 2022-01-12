@@ -1,19 +1,19 @@
 import java.util.ArrayList;
 
-public class WebList extends ArrayList <WebPage>{
+public class WebList extends ArrayList <WebTree>{
 	
 	private static final long serialVersionUID = 1L;
 	
 //	private String url;
 //	private String title;
-	private ArrayList<WebPage> lst;
+	private ArrayList<WebTree> lst;
 	
 	public WebList() {
-		this.lst = new ArrayList<WebPage>();
+		this.lst = new ArrayList<WebTree>();
 	}
 	
 	@Override
-	public boolean add(WebPage e) {
+	public boolean add(WebTree e) {
 	  return super.add(e);
 	}
 	//quick sort
@@ -23,7 +23,7 @@ public class WebList extends ArrayList <WebPage>{
 		}
 		else {
 			for(int i=0;i<lst.size();i++) {
-				if(lst.get(i).score<0) {
+				if(lst.get(i).root.nodeScore<0) {
 					lst.remove(lst.get(i));
 					i--;
 				}
@@ -34,14 +34,14 @@ public class WebList extends ArrayList <WebPage>{
 	private void quickSort(int leftbound, int rightbound){
 		//1. implement quickSort algorithm
 		if(leftbound<rightbound) {
-			double pivot=lst.get(leftbound).score;
+			double pivot=lst.get(leftbound).root.nodeScore;
 			int i = leftbound;
 			int j = rightbound;
 			while(true) {
-				while(lst.get(i).score<=pivot&&i<j) {
+				while(lst.get(i).root.nodeScore<=pivot&&i<j) {
 					i++;
 				}
-				while(lst.get(j).score>pivot&&j>1) {
+				while(lst.get(j).root.nodeScore>pivot&&j>1) {
 					j--;
 				}
 				if(i>=j) {
@@ -56,7 +56,7 @@ public class WebList extends ArrayList <WebPage>{
 	}	
 	
 	private void swap(int aIndex, int bIndex){
-		WebPage temp = lst.get(aIndex);
+		WebTree temp = lst.get(aIndex);
 		lst.set(aIndex, lst.get(bIndex));
 		lst.set(bIndex, temp);
 	}
@@ -69,11 +69,11 @@ public class WebList extends ArrayList <WebPage>{
 		else {
 			String sb = "";
 			for(int i=0; i<lst.size();i++){
-				WebPage k = lst.get(i);
+				WebTree k = lst.get(i);
 				if(i>0) {
 					sb +=" ";
 				}
-				sb+=Double.toString(k.score);
+				sb+=Double.toString(k.root.nodeScore);
 			}
 			
 			System.out.println(sb.toString());	
@@ -82,7 +82,7 @@ public class WebList extends ArrayList <WebPage>{
 
 	}
 	
-	public ArrayList<WebPage> getLst() {
+	public ArrayList<WebTree> getLst() {
 		return lst;
 	}
 }

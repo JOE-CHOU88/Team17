@@ -152,8 +152,8 @@ public class TestProject extends HttpServlet {
 					*/
 					tree.setPostOrderScore(keywords);
 					//test
-					webList.getLst().add(page);
-				    webList.add(page);
+					webList.getLst().add(tree);
+				    webList.add(tree);
 					System.out.println("tree.eularPrintTree()");
 					sublinkInfo = tree.eularPrintTree();
 				    
@@ -187,18 +187,18 @@ public class TestProject extends HttpServlet {
 		int maxSizeOfTitle=20;
 		for(int j=webList.getLst().size()-1;j>=0;j--) {
 			System.out.println("========="+j+"=============");
-			if(webList.getLst().get(j).name.length() > maxSizeOfTitle) {
-				sortedWebList[count][0] = webList.getLst().get(j).name.substring(0,maxSizeOfTitle) + "...";
+			if(webList.getLst().get(j).root.webPage.name.length() > maxSizeOfTitle) {
+				sortedWebList[count][0] = webList.getLst().get(j).root.webPage.name.substring(0,maxSizeOfTitle) + "...";
 
 			}else {
 
-				sortedWebList[count][0] = webList.getLst().get(j).name;
+				sortedWebList[count][0] = webList.getLst().get(j).root.webPage.name;
 
 			}
 			System.out.println(sortedWebList[count][0]);
-			sortedWebList[count][1] = webList.getLst().get(j).url;
+			sortedWebList[count][1] = webList.getLst().get(j).root.webPage.url;
 			System.out.println(sortedWebList[count][1]);
-			sortedWebList[count][2] = String.format("%.1f",webList.getLst().get(j).score);
+			sortedWebList[count][2] = String.format("%.1f",webList.getLst().get(j).root.nodeScore);
 			System.out.println("Each web total score: " + sortedWebList[count][2]);
 			//System.out.println("sublinkInfo:\n" + sublinkInfo);
 			System.out.println();
