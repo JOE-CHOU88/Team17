@@ -105,10 +105,10 @@ public class HtmlMatcher {
 //			for(String ss: array) {
 //				retVal.put("title", ss);
 //			}
-			System.out.println("HtmlMatcher: 107");
-			for(String value:retVal.values()) {
-				System.out.println(value);
-			}
+//			System.out.println("HtmlMatcher: 107");
+//			for(String value:retVal.values()) {
+//				System.out.println(value);
+//			}
 			
 			return retVal;
 		}else {

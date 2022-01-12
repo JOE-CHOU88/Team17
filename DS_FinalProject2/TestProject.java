@@ -35,7 +35,8 @@ public class TestProject extends HttpServlet {
 		    String pwdL = "/Users/ashleylai/git/Team17/DS_FinalProject2/keyword.txt";
 			File file = new File(pwdJ);		
 			Scanner scanner = new Scanner(file);
-		
+			
+			System.out.println("Self-defined keyword list:");
 			while(scanner.hasNextLine()){
 				
 				double weight = Double.parseDouble(scanner.next());
@@ -43,6 +44,7 @@ public class TestProject extends HttpServlet {
 				keywords.add(new Keyword(name, weight));
 				//test
 				System.out.printf("%.2f %s\n", weight, name);
+				System.out.println();
 			}
 			scanner.close();
         }catch(FileNotFoundException e){
@@ -61,23 +63,25 @@ public class TestProject extends HttpServlet {
 			String requestUri = request.getRequestURI();
 			request.setAttribute("requestUri", requestUri);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
-			System.out.println(request);
-			System.out.println();
-			System.out.println(response);
+			//System.out.println(request);
+			//System.out.println();
+			//System.out.println(response);
 			return;
 		}
 		
 		
 		//@SuppressWarnings("deprecation")
-		System.out.println("1<--------->");
-		String keyword = request.getParameter("keyword");
-		System.out.println("keyword: " + keyword);
-		GoogleQuery google = new GoogleQuery(keyword + "%20藝文中心"); //%20兩廳院%20現代舞
+		//System.out.println("1<--------->");
+		String keyword = request.getParameter("keyword").replace(" ", "%20");
+		
+		//System.out.println("keyword: " + keyword);
+		GoogleQuery google = new GoogleQuery(keyword + "%20藝文中心%20表演%20youtube"); //%20兩廳院%20現代舞
 //		String k = java.net.URLEncoder.encode(request.getParameter("keyword"), "UTF-8");
 //		System.out.println("---------");
 //		System.out.println(k);
 		//System.out.println("2<--------->");
 		System.out.println("User input keyword: " + request.getParameter("keyword"));
+		System.out.println();
 		HashMap<String, String> query = google.query();
 		
 		//String[][] s = new String[query.size()][2];
@@ -124,15 +128,15 @@ public class TestProject extends HttpServlet {
 					for(Entry<String, String> entry2 : children.entrySet()) {
 						String ckey = entry2.getKey();
 					    String cvalue = entry2.getValue();
-					    System.out.println("TestProject126:");
-					    System.out.println("child title: " + ckey);  //title
-					    System.out.println("child url: " + cvalue); //url
+					    //System.out.println("TestProject126:");
+					    //System.out.println("child title: " + ckey);  //title
+					    //System.out.println("child url: " + cvalue); //url
 					    //check if the sublink appears before
 					    if(! checkDuplicate.contains(cvalue)) {
 					    	WebNode child = new WebNode(new WebPage(cvalue, ckey));
 						    tree.root.addChild(child);
 						    //tree.root.nodeScore += child.nodeScore;
-						    System.out.println("<<----------------->>");
+						    //System.out.println("<<----------------->>");
 						    //cs[cnum][0] = ckey;
 						    //cs[cnum][1] = cvalue;
 					    	checkDuplicate.add(cvalue);
@@ -154,7 +158,7 @@ public class TestProject extends HttpServlet {
 					//test
 					webList.getLst().add(tree);
 				    webList.add(tree);
-					System.out.println("tree.eularPrintTree()");
+					System.out.println("WebTree:");
 					sublinkInfo = tree.eularPrintTree();
 				    
 					
