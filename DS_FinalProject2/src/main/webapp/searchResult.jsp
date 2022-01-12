@@ -75,15 +75,19 @@
 		//System.out.println(orderList[0][0]); //title
 		//System.out.println(orderList[0][1]); //url
 		//try{
-			for (int i = 0; i < orderList.length; i+=3) {
+
+			//for (int i = 0; i < orderList.length; i+=1) {
 				//String url = orderList[i][1];
 				//String title = orderList[i][0];
 				//String score =  orderList[i][2];
 				//s=s.substring(7);
-	%>
+%>
 	        
 		        <div class="container">
 		            <div class="row">
+		            <% 
+		            for (int i = 0; i < orderList.length; i+=1) {
+		            %>
 		                <div class="col-md-4">
 		                    <div class="work-box">
 		                        <div class="icon text-primary py-3">
@@ -98,42 +102,15 @@
 		                            </p>
 		                        </div>
 		                    </div>
-		                </div>               
-		                <div class="col-md-4">
-		                    <div class="work-box">
-		                        <div class="icon text-primary py-3">
-		                            <img src="https://picsum.photos/id/1037/300/300" alt="">
-		                        </div>
-		                        <p>
-		                            <strong><a href='<%=orderList[i+1][1]%>'><%=orderList[i+1][0]%> </a><br></strong>
-		                            <br>Total score: <%=orderList[i+1][2]%><br>
-		                            Host:<br>Place:<br>Price:<br>Time:
-		                        </p>
-		                    </div>
 		                </div>
-		                <div class="col-md-4">
-		                    <div class="work-box">
-		                        <div class="icon text-primary py-3">
-		                            <img src="https://picsum.photos/id/1037/300/300" alt="">
-		                        </div>
-		                        <div>
-		                            <p>
-		                                <strong><a href='<%=orderList[i+2][1]%>'><%=orderList[i+2][0]%> </a><br></strong>
-		                            	<br>Total score: <%=orderList[i+2][2]%><br>
-		                                Host:<br>Place:<br>Price:<br>Time:
-		                            </p>
-		                        </div>
-		                    </div>
-		                </div>
-		                
+		                <%
+					}
+					%>
 		            </div>
 		        </div>
-		        </div>
-		        </div>
 		    </section>  
-		<%
-		}
-		%>
+		     
+		
 	<!--<%-->
 	//}catch(ArrayIndexOutOfBoundsException e){
 		

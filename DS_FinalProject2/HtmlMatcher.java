@@ -86,12 +86,12 @@ public class HtmlMatcher {
 					//System.out.println(title + ","+citeUrl);
 					//System.out.println("<----------------------->");
 					retVal.put(title, citeUrl);
-					array.add(citeUrl);
+					//array.add(citeUrl);
 //					System.out.println("HtmlMatcher: 88");
-					for (String ss: array) {
-						System.out.println("child link: " + ss);
-						//retVal.put("title", ss);
-					}
+//					for (String ss: array) {
+//						System.out.println("child link: " + ss);
+//						//retVal.put("title", ss);
+//					}
 	
 				} catch (IndexOutOfBoundsException e) {
 	

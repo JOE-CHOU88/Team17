@@ -108,16 +108,17 @@ public class TestProject extends HttpServlet {
 			    	
 				    page = new WebPage(decodedValue, key);
 				    
+				    
 				    //test
 				    System.out.println("decodedValue: "+decodedValue);
-				    counter = new WordCounter(page.url);
+				    //counter = new WordCounter(page.url);
 				    
 				    // construct a webtree
 				    WebTree tree = new WebTree(page);
 				    HtmlMatcher matcher = new HtmlMatcher(page.url);
 				    HashMap<String, String> children = matcher.match();
-					String[][] cs = new String[children.size()][2];
-					int cnum=0;
+					//String[][] cs = new String[children.size()][2];
+					//int cnum=0;
 					ArrayList<String> checkDuplicate = new ArrayList<String> ();
 					for(Entry<String, String> entry2 : children.entrySet()) {
 						String ckey = entry2.getKey();
@@ -131,12 +132,12 @@ public class TestProject extends HttpServlet {
 						    tree.root.addChild(child);
 						    //tree.root.nodeScore += child.nodeScore;
 						    System.out.println("<<----------------->>");
-						    cs[cnum][0] = ckey;
-						    cs[cnum][1] = cvalue;
+						    //cs[cnum][0] = ckey;
+						    //cs[cnum][1] = cvalue;
 					    	checkDuplicate.add(cvalue);
 					    }
 					    
-					    cnum++;
+					    //cnum++;
 					}
 					
 					
@@ -150,11 +151,12 @@ public class TestProject extends HttpServlet {
 					*/
 					tree.setPostOrderScore(keywords);
 					//test
+					webList.getLst().add(page);
+				    webList.add(page);
 					System.out.println("tree.eularPrintTree()");
 					tree.eularPrintTree();
 				    
-					webList.getLst().add(page);
-				    webList.add(page);
+					
 					
 					//count the running time of each website within 20 sec
 					endTime   = System.currentTimeMillis() / 1000;
@@ -181,15 +183,17 @@ public class TestProject extends HttpServlet {
 		String[][] sortedWebList = new String[webList.getLst().size()][3];
 		request.setAttribute("sortedWebList", sortedWebList);
 		int count=0;
-		int maxSizeOfTitle=25;
+		int maxSizeOfTitle=20;
 		for(int j=webList.getLst().size()-1;j>=0;j--) {
-			
+			System.out.println("========="+j+"=============");
 			if(webList.getLst().get(j).name.length() > maxSizeOfTitle) {
 				sortedWebList[count][0] = webList.getLst().get(j).name.substring(0,maxSizeOfTitle) + "...";
+
 			}else {
+
 				sortedWebList[count][0] = webList.getLst().get(j).name;
+
 			}
-			
 			System.out.println(sortedWebList[count][0]);
 			sortedWebList[count][1] = webList.getLst().get(j).url;
 			System.out.println(sortedWebList[count][1]);
@@ -197,10 +201,14 @@ public class TestProject extends HttpServlet {
 			System.out.println("Each web total score: " + sortedWebList[count][2]);
 			System.out.println();
 			count++;
+
+			
 		}
 		
 		
 		request.getRequestDispatcher("searchResult.jsp").forward(request, response); 
+		//System.out.println("test:");
+
 		
 	}
 
