@@ -74,66 +74,73 @@
 		String[][] orderList = (String[][]) request.getAttribute("sortedWebList");
 		//System.out.println(orderList[0][0]); //title
 		//System.out.println(orderList[0][1]); //url
-		for (int i = 0; i < orderList.length; i+=3) {
-			//String url = orderList[i][1];
-			//String title = orderList[i][0];
-			//String score =  orderList[i][2];
-			//s=s.substring(7);
-%>
-        
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="work-box">
-                        <div class="icon text-primary py-3">
-                            <img src="https://picsum.photos/id/1037/300/300" alt="">
-                        </div>
-                        <div>
-                            <p>
-                                <strong><a href='<%=orderList[i][1]%>'><%=orderList[i][0]%> </a><br></strong>
-                            	<br>Total score: <%=orderList[i][2]%><br>
-                            	Host:<br>Place:<br>Price:<br>Time:
-								<br>
-                            </p>
-                        </div>
-                    </div>
-                </div>               
-                <div class="col-md-4">
-                    <div class="work-box">
-                        <div class="icon text-primary py-3">
-                            <img src="https://picsum.photos/id/1037/300/300" alt="">
-                        </div>
-                        <p>
-                            <strong><a href='<%=orderList[i+1][1]%>'><%=orderList[i+1][0]%> </a><br></strong>
-                            <br>Total score: <%=orderList[i+1][2]%><br>
-                            Host:<br>Place:<br>Price:<br>Time:
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="work-box">
-                        <div class="icon text-primary py-3">
-                            <img src="https://picsum.photos/id/1037/300/300" alt="">
-                        </div>
-                        <div>
-                            <p>
-                                <strong><a href='<%=orderList[i+2][1]%>'><%=orderList[i+2][0]%> </a><br></strong>
-                            	<br>Total score: <%=orderList[i+2][2]%><br>
-                                Host:<br>Place:<br>Price:<br>Time:
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        </div>
-        </div>
-    </section>
-    
-<%
-}
-%>
+		//try{
+			for (int i = 0; i < orderList.length; i+=3) {
+				//String url = orderList[i][1];
+				//String title = orderList[i][0];
+				//String score =  orderList[i][2];
+				//s=s.substring(7);
+	%>
+	        
+		        <div class="container">
+		            <div class="row">
+		                <div class="col-md-4">
+		                    <div class="work-box">
+		                        <div class="icon text-primary py-3">
+		                            <img src="https://picsum.photos/id/1037/300/300" alt="">
+		                        </div>
+		                        <div>
+		                            <p>
+		                                <strong><a href='<%=orderList[i][1]%>'><%=orderList[i][0]%> </a><br></strong>
+		                            	<br>Total score: <%=orderList[i][2]%><br>
+		                            	Host:<br>Place:<br>Price:<br>Time:
+										<br>
+		                            </p>
+		                        </div>
+		                    </div>
+		                </div>               
+		                <div class="col-md-4">
+		                    <div class="work-box">
+		                        <div class="icon text-primary py-3">
+		                            <img src="https://picsum.photos/id/1037/300/300" alt="">
+		                        </div>
+		                        <p>
+		                            <strong><a href='<%=orderList[i+1][1]%>'><%=orderList[i+1][0]%> </a><br></strong>
+		                            <br>Total score: <%=orderList[i+1][2]%><br>
+		                            Host:<br>Place:<br>Price:<br>Time:
+		                        </p>
+		                    </div>
+		                </div>
+		                <div class="col-md-4">
+		                    <div class="work-box">
+		                        <div class="icon text-primary py-3">
+		                            <img src="https://picsum.photos/id/1037/300/300" alt="">
+		                        </div>
+		                        <div>
+		                            <p>
+		                                <strong><a href='<%=orderList[i+2][1]%>'><%=orderList[i+2][0]%> </a><br></strong>
+		                            	<br>Total score: <%=orderList[i+2][2]%><br>
+		                                Host:<br>Place:<br>Price:<br>Time:
+		                            </p>
+		                        </div>
+		                    </div>
+		                </div>
+		                
+		            </div>
+		        </div>
+		        </div>
+		        </div>
+		    </section>  
+		<%
+		}
+		%>
+	<!--<%-->
+	//}catch(ArrayIndexOutOfBoundsException e){
+		
+	//}finally{
+		
+	//}
+	<!--%>-->
     <!-- introSection end -->
     <!-- 設定置底返回按鈕 返回按鈕滾動動畫 -->
     <button id="goBackBtn" class="bg-primary">

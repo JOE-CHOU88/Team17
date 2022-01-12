@@ -33,6 +33,7 @@ public class WebTree {
 		//print "("
 		System.out.print("(");
 		//print "name","score"
+		
 		System.out.print(startNode.webPage.url+","+startNode.nodeScore);
 		
 		//2.print child preorder

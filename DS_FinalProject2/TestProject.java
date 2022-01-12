@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
@@ -30,9 +31,9 @@ public class TestProject extends HttpServlet {
         super();
         keywords = new KeywordList();
         try {
-	        String pwdJ = "C:\\Users\\Danny\\git\\team17c\\DS_FinalProject2\\keyword.txt";
+	        String pwdJ = "C:\\Users\\Danny\\git\\Team17d\\DS_FinalProject2\\keyword.txt";
 		    String pwdL = "/Users/ashleylai/git/Team17/DS_FinalProject2/keyword.txt";
-			File file = new File(pwdL);		
+			File file = new File(pwdJ);		
 			Scanner scanner = new Scanner(file);
 		
 			while(scanner.hasNextLine()){
@@ -106,30 +107,38 @@ public class TestProject extends HttpServlet {
 			    	String decodedValue = decoder.decode();
 			    	
 				    page = new WebPage(decodedValue, key);
-				    webList.getLst().add(page);
-				    webList.add(page);
 				    
 				    //test
 				    System.out.println("decodedValue: "+decodedValue);
 				    counter = new WordCounter(page.url);
 				    
-				   
+				    // construct a webtree
 				    WebTree tree = new WebTree(page);
 				    HtmlMatcher matcher = new HtmlMatcher(page.url);
 				    HashMap<String, String> children = matcher.match();
 					String[][] cs = new String[children.size()][2];
 					int cnum=0;
+					ArrayList<String> checkDuplicate = new ArrayList<String> ();
 					for(Entry<String, String> entry2 : children.entrySet()) {
-					    String ckey = entry2.getKey();
+						String ckey = entry2.getKey();
 					    String cvalue = entry2.getValue();
 					    System.out.println("TestProject126:");
-					    System.out.println(ckey);  //title
-					    System.out.println(cvalue); //url
-					    tree.root.addChild(new WebNode(new WebPage(cvalue, ckey)));
-					    cs[cnum][0] = ckey;
-					    cs[cnum][1] = cvalue;
+					    System.out.println("child title: " + ckey);  //title
+					    System.out.println("child url: " + cvalue); //url
+					    //check if the sublink appears before
+					    if(! checkDuplicate.contains(cvalue)) {
+					    	WebNode child = new WebNode(new WebPage(cvalue, ckey));
+						    tree.root.addChild(child);
+						    //tree.root.nodeScore += child.nodeScore;
+						    System.out.println("<<----------------->>");
+						    cs[cnum][0] = ckey;
+						    cs[cnum][1] = cvalue;
+					    	checkDuplicate.add(cvalue);
+					    }
+					    
 					    cnum++;
 					}
+					
 					
 					/*
 					for (int i=0; i<cs.size(); i++) {
@@ -144,6 +153,9 @@ public class TestProject extends HttpServlet {
 					System.out.println("tree.eularPrintTree()");
 					tree.eularPrintTree();
 				    
+					webList.getLst().add(page);
+				    webList.add(page);
+					
 					//count the running time of each website within 20 sec
 					endTime   = System.currentTimeMillis() / 1000;
 			    	long totalTime = endTime - startTime;

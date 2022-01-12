@@ -76,7 +76,7 @@ public class HtmlMatcher {
 					citeUrl=citeUrl.substring(citeUrl.indexOf("http"), citeUrl.indexOf("&"));
 					URLDecode decoder = new URLDecode(citeUrl);
 			    	String decodedValue = decoder.decode();
-					String title = "title";
+					String title = li.text();
 					/*
 					if(title.equals("")) {
 						continue;
@@ -87,9 +87,10 @@ public class HtmlMatcher {
 					//System.out.println("<----------------------->");
 					retVal.put(title, citeUrl);
 					array.add(citeUrl);
-					System.out.println("HtmlMatcher: 88");
+//					System.out.println("HtmlMatcher: 88");
 					for (String ss: array) {
-						System.out.println(ss);
+						System.out.println("child link: " + ss);
+						//retVal.put("title", ss);
 					}
 	
 				} catch (IndexOutOfBoundsException e) {
@@ -101,10 +102,10 @@ public class HtmlMatcher {
 				
 	
 			}
-			for(String ss: array) {
-				retVal.put("title", ss);
-			}
-			System.out.println("107");
+//			for(String ss: array) {
+//				retVal.put("title", ss);
+//			}
+			System.out.println("HtmlMatcher: 107");
 			for(String value:retVal.values()) {
 				System.out.println(value);
 			}
