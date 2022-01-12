@@ -85,6 +85,7 @@ public class TestProject extends HttpServlet {
 		int num = 0;
 		WebList webList = new WebList();
 		for(Entry<String, String> entry : query.entrySet()) {
+			String sublinkInfo;
 		    String key = entry.getKey();
 		    String value = entry.getValue();
 		    value = value.substring(7, value.indexOf("&"));
@@ -154,7 +155,7 @@ public class TestProject extends HttpServlet {
 					webList.getLst().add(page);
 				    webList.add(page);
 					System.out.println("tree.eularPrintTree()");
-					tree.eularPrintTree();
+					sublinkInfo = tree.eularPrintTree();
 				    
 					
 					
@@ -180,7 +181,7 @@ public class TestProject extends HttpServlet {
 //		webList.output();
 //		System.out.println(webList.size());
 		
-		String[][] sortedWebList = new String[webList.getLst().size()][3];
+		String[][] sortedWebList = new String[webList.getLst().size()][4];
 		request.setAttribute("sortedWebList", sortedWebList);
 		int count=0;
 		int maxSizeOfTitle=20;
@@ -199,6 +200,7 @@ public class TestProject extends HttpServlet {
 			System.out.println(sortedWebList[count][1]);
 			sortedWebList[count][2] = String.format("%.1f",webList.getLst().get(j).score);
 			System.out.println("Each web total score: " + sortedWebList[count][2]);
+			//System.out.println("sublinkInfo:\n" + sublinkInfo);
 			System.out.println();
 			count++;
 
