@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -25,6 +26,7 @@ public class TestProject extends HttpServlet {
 	private KeywordList keywords;
 	private WordCounter counter;
 	private URLDecode decoder;
+	//private URLEncoder encoder;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -73,17 +75,22 @@ public class TestProject extends HttpServlet {
 		
 		//@SuppressWarnings("deprecation")
 		//System.out.println("1<--------->");
-		String keyword = request.getParameter("keyword").replace(" ", "%20");
-		//keyword = java.net.URLEncoder.encode(keyword+"%20藝文中心%20youtube", "UTF-8");
+		String keyword = new String(request.getParameter("keyword")); //.replace(" ", "+")
+		//System.out.println("User input keyword (encoded before): " + String.format("'%s'", keyword));
+		//keyword = URLEncoder.encode(keyword, "UTF-8"); //"+藝文中心+舞蹈演出+youtube"
+		//keyword = URLEncoder.encode(keyword, "UTF-8");
+		//System.out.println("User input keyword (encoded after):  " + String.format("'%s'", keyword));
+		//keyword = java.net.URLDecoder.decode(keyword, "ISO-8859-1");
 		//decoder = new URLDecode(keyword);
 		//String decodedKeyword = decoder.decode();
-		//System.out.println("keyword: " + keyword);
-		GoogleQuery google = new GoogleQuery(String.format("'%s'", keyword) +"+藝文中心+舞蹈演出+youtube"); //%20兩廳院%20現代舞
+		//System.out.println("User input keyword (decoded after): " + String.format("'%s'", keyword));
+		GoogleQuery google = new GoogleQuery(keyword + "+dance+youtube");
+		//GoogleQuery google = new GoogleQuery(String.format("'%s'", keyword) +"+藝文中心+舞蹈演出+youtube"); //%20兩廳院%20現代舞
 //		String k = java.net.URLEncoder.encode(request.getParameter("keyword"), "UTF-8");
 //		System.out.println("---------");
 //		System.out.println(k);
 		//System.out.println("2<--------->");
-		System.out.println("User input keyword: " + String.format("'%s'", keyword));
+		System.out.println("User input keyword (after googleQuery): " + String.format("'%s'", keyword));
 		System.out.println();
 		HashMap<String, String> query = google.query();
 		
@@ -188,11 +195,11 @@ public class TestProject extends HttpServlet {
 //		webList.output();
 //		System.out.println(webList.size());
 		
-		String[][] sortedWebList = new String[webList.getLst().size()][4];
+		String[][] sortedWebList = new String[9][4]; //webList.getLst().size()
 		request.setAttribute("sortedWebList", sortedWebList);
 		int count=0;
-		int maxSizeOfTitle=20;
-		for(int j=webList.getLst().size()-1;j>=0;j--) {
+		int maxSizeOfTitle=20;//webList.getLst().size()-1
+		for(int j=webList.getLst().size()-1;j>=webList.getLst().size()-1-8;j--) {
 			System.out.println("========="+(count+1)+"=============");
 			if(webList.getLst().get(j).root.webPage.name.length() > maxSizeOfTitle) {
 				sortedWebList[count][0] = webList.getLst().get(j).root.webPage.name.substring(0,maxSizeOfTitle) + "...";

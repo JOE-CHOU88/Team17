@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=BIG5"
-    pageEncoding="BIG5"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     
 <!DOCTYPE html>
 <html>
@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>»RªQ¥´ª¯</title>
+    <title>èˆžæ¾æ‰“ç‹—</title>
 
     <link rel="stylesheet" href="index,feedback.css">
 </head>
@@ -20,20 +20,20 @@
         <ul>
             <div class="topbar">
                 <img class="img-topbar" src="greenbar.png" alt="greenbar.png">
-                <li class="active"><a href="#">°â²¼¨t²Î</a>
-                    <!-- href¬O¥Nªí­n³sµ²¨ìªº¦a¤è -->
+                <li class="active"><a href="#">å”®ç¥¨ç³»çµ±</a>
+                    <!-- hrefæ˜¯ä»£è¡¨è¦é€£çµåˆ°çš„åœ°æ–¹ -->
                     <div class="sub-menu-1">
                         <ul>
                             <li><a rel="noopener" target="_blank" href="https://kktix.com/">KKTIX</a></li>
                             <li><a rel="noopener" target="_blank" href="https://www.indievox.com/">indivox</a></li>
-                            <li><a rel="noopener" target="_blank" href="https://tixcraft.com/">©Ý¤¸°â²¼</a></li>
+                            <li><a rel="noopener" target="_blank" href="https://tixcraft.com/">æ‹“å…ƒå”®ç¥¨</a></li>
                             <li><a rel="noopener" target="_blank"
-                                    href="https://kham.com.tw/application/utk01/UTK0101_03.aspx">¼e§»°â²¼</a>
+                                    href="https://kham.com.tw/application/utk01/UTK0101_03.aspx">å¯¬å®å”®ç¥¨</a>
                             </li>
-                            <li><a rel="noopener" target="_blank" href="https://www.opentix.life/">OPENTIX°â²¼</a></li>
-                            <li><a rel="noopener" target="_blank" href="https://ticket.ibon.com.tw/">ibon°â²¼</a></li>
+                            <li><a rel="noopener" target="_blank" href="https://www.opentix.life/">OPENTIXå”®ç¥¨</a></li>
+                            <li><a rel="noopener" target="_blank" href="https://ticket.ibon.com.tw/">ibonå”®ç¥¨</a></li>
                             <li><a rel="noopener" target="_blank"
-                                    href="https://tickets.udnfunlife.com/application/utk01/utk0101_.aspx">udn°â²¼</a></li>
+                                    href="https://tickets.udnfunlife.com/application/utk01/utk0101_.aspx">udnå”®ç¥¨</a></li>
                         </ul>
                     </div>
                 </li>
@@ -41,38 +41,38 @@
 
             <div class="topbar">
                 <img class="img-topbar" src="yellowbar.png" alt="greenbar.png">
-                <li class="active"><a href="#">¤j«¬ªíºt³õÀ]</a>
+                <li class="active"><a href="#">å¤§åž‹è¡¨æ¼”å ´é¤¨</a>
                     <div class="sub-menu-3">
                         <ul>
-                            <li class="hover me"><a href="#">¥_³¡</a>
+                            <li class="hover me"><a href="#">åŒ—éƒ¨</a>
                                 <div class="sub-menu-2">
                                     <ul>
-                                        <li><a rel="noopener" target="_blank" href="https://tmc.taipei/">¥x¥_¬y¦æ­µ¼Ö¤¤¤ß</a>
+                                        <li><a rel="noopener" target="_blank" href="https://tmc.taipei/">å°åŒ—æµè¡ŒéŸ³æ¨‚ä¸­å¿ƒ</a>
                                         </li>
-                                        <li><a rel="noopener" target="_blank" href="https://npac-ntch.org/zh">¨âÆU°|</a>
+                                        <li><a rel="noopener" target="_blank" href="https://npac-ntch.org/zh">å…©å»³é™¢</a>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
-                            <li class="hover me"><a href="#">¤¤³¡</a>
-                                <div class="sub-menu-2">
-                                    <ul>
-                                        <li><a rel="noopener" target="_blank"
-                                                href="https://www.npac-ntt.org/index">¥x¤¤ºq¼@°|</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="hover me"><a href="#">«n³¡</a>
+                            <li class="hover me"><a href="#">ä¸­éƒ¨</a>
                                 <div class="sub-menu-2">
                                     <ul>
                                         <li><a rel="noopener" target="_blank"
-                                                href="https://www.npac-weiwuying.org/">½ÃªZÀç°ê®aÃÀ³N¤å¤Æ¤¤¤ß</a></li>
-                                        <li><a rel="noopener" target="_blank" href="https://kpmc.com.tw/">°ª¶¯¬y¦æ­µ¼Ö¤¤¤ß</a>
+                                                href="https://www.npac-ntt.org/index">å°ä¸­æ­ŒåŠ‡é™¢</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="hover me"><a href="#">å—éƒ¨</a>
+                                <div class="sub-menu-2">
+                                    <ul>
+                                        <li><a rel="noopener" target="_blank"
+                                                href="https://www.npac-weiwuying.org/">è¡›æ­¦ç‡Ÿåœ‹å®¶è—è¡“æ–‡åŒ–ä¸­å¿ƒ</a></li>
+                                        <li><a rel="noopener" target="_blank" href="https://kpmc.com.tw/">é«˜é›„æµè¡ŒéŸ³æ¨‚ä¸­å¿ƒ</a>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
-                            <li><a href="#">ªF³¡</a>
+                            <li><a href="#">æ±éƒ¨</a>
                             </li>
                         </ul>
                     </div>
@@ -81,7 +81,7 @@
 
             <div class="topbar">
                 <img class="img-topbar" src="greenbar.png" alt="greenbar.png">
-                <li class="active"><a href="feedback.jsp">·N¨£¤ÏõX</a>
+                <li class="active"><a href="feedback.jsp">æ„è¦‹åé¥‹</a>
                 </li>
             </div>
 
@@ -92,17 +92,17 @@
 
     <div class="card-list">
         <div class="left-card">
-            <img width="300" src="logo.png" margin=auto alt="ªZªQ¥´ª¯¹Ï.png">
+            <img width="300" src="logo.png" margin=auto alt="æ­¦æ¾æ‰“ç‹—åœ–.png">
         </div>
 
         <div class="right-card">
-            <h1 class="title">»RªQ¥´ª¯</h1>
-            <h6 class="subtitle"> ³Ì¤è«Kªº»RÁÐªíºt·j´M¤ÞÀº</h6>
+            <h1 class="title">èˆžæ¾æ‰“ç‹—</h1>
+            <h6 class="subtitle"> æœ€æ–¹ä¾¿çš„èˆžè¹ˆè¡¨æ¼”æœå°‹å¼•æ“Ž</h6>
 			
-			<form action='${requestUri}' method='get'>
+			<form action="${requesturi}" method='get'>
             	<input class="search-bar" type="text" name="keyword">
             	<button id="searchBtn" class="search-btn" type="submit">Search</button>
-            	<% //onclick="window.location.href='searchResult.jsp'" %>
+            	<% //onclick="window.location.href='searchResult.jsp'"  ${requesturl} %>
             </form>
         </div>
 
@@ -119,7 +119,7 @@
         <img class="img-buttombar" src="smallyellowbar.png" alt="smallyellowbar.png">
     </div>
 	
-	<!-- ³sµ²ºô­¶¥Dµ{¦¡ -->
+	<!-- é€£çµç¶²é ä¸»ç¨‹å¼ -->
     <script src="index.js"></script>
 </body>
 

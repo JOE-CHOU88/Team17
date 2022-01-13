@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=BIG5"
-    pageEncoding="BIG5"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,16 +7,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>�R�Q����</title>
+    <title>舞松打狗</title>
     <link rel="icon shortcut" href="./img/favicon.ico">
-    <!-- Bootstrap�x����� https://getbootstrap.com/ -->
-    <!-- �s��Bootstrap.min.css -->
-    <!-- �Ȼs��Bootstrap CSS -->
+    <!-- Bootstrap官方網站 https://getbootstrap.com/ -->
+    <!-- 連結Bootstrap.min.css -->
+    <!-- 客製化Bootstrap CSS -->
     <link rel="stylesheet" href="bootstrap.css">
-    <!-- �ϥ�font awesome -->
+    <!-- 使用font awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
         integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    <!-- �ϥ�style.css -->
+    <!-- 使用style.css -->
     <link rel="stylesheet" href="searchResult.css">
 </head>
 
@@ -30,7 +30,7 @@
 		
     <!-- header -->
     <!-- introSection -->
-    <!-- �]�wintroSection �W�Upadding��5�� -->
+    <!-- 設定introSection 上下padding為5倍 -->
     <section id="introSection">
         <div class="buttombar-list">
             <img class="img-buttombar" src="smallgreenbar.png" alt="smallgreenbar.png">
@@ -42,29 +42,29 @@
         </div>
         <div class="card-list">
             <div class="left-card">
-                <h1 class="title"><a href='http://localhost:8080/DS_FinalProject2/TestProject'>�R�Q����</a></h1>
+                <h1 class="title"><a href='http://localhost:8080/DS_FinalProject2/TestProject'>舞松打狗</a></h1>
             </div>
             <div class="right-card">
                 <div class="select-card-list">
                     <select class="select-card">
-                        <option>�̦a��</option>
-                        <option>����</option>
-                        <option>�_��</option>
-                        <option>����</option>
-                        <option>�n��</option>
-                        <option>�F��</option>
+                        <option>依地區</option>
+                        <option>全部</option>
+                        <option>北部</option>
+                        <option>中部</option>
+                        <option>南部</option>
+                        <option>東部</option>
                     </select>
                     <select class="select-card">
-                        <option>�̮ɶ�</option>
-                        <option>����</option>
-                        <option>�@�Ӥ뤺</option>
-                        <option>�T�Ӥ뤺</option>
-                        <option>���Ӥ뤺</option>
+                        <option>依時間</option>
+                        <option>全部</option>
+                        <option>一個月內</option>
+                        <option>三個月內</option>
+                        <option>六個月內</option>
                     </select>
                     <select class="select-card">
-                        <option>�̻���</option>
-                        <option>�ѧC�찪</option>
-                        <option>�Ѱ���C</option>
+                        <option>依價格</option>
+                        <option>由低到高</option>
+                        <option>由高到低</option>
                     </select>
                 </div>
             </div>
@@ -119,7 +119,7 @@
 	//}
 	<!--%>-->
     <!-- introSection end -->
-    <!-- �]�w�m����^���s ��^���s�u�ʰʵe -->
+    <!-- 設定置底返回按鈕 返回按鈕滾動動畫 -->
     <button id="goBackBtn" class="bg-primary">
         <i class="fas fa-chevron-up"></i>
     </button>
@@ -134,7 +134,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
-    <!-- �s�������D�{�� -->
+    <!-- 連結網頁主程式 -->
     <script src="searchResult.js"></script>
     
 </body>
