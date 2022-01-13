@@ -44,7 +44,7 @@ public class TestProject extends HttpServlet {
 				keywords.add(new Keyword(name, weight));
 				//test
 				System.out.printf("%.2f %s\n", weight, name);
-				System.out.println();
+				//System.out.println();
 			}
 			scanner.close();
         }catch(FileNotFoundException e){
@@ -158,9 +158,8 @@ public class TestProject extends HttpServlet {
 					//test
 					webList.getLst().add(tree);
 				    webList.add(tree);
-					System.out.println("WebTree:");
-					sublinkInfo = tree.eularPrintTree();
-				    
+					//System.out.println("WebTree:");
+					//System.out.println(tree.eularPrintTree());
 					
 					
 					//count the running time of each website within 20 sec
@@ -173,6 +172,7 @@ public class TestProject extends HttpServlet {
 			    	System.out.println("runtime error");
 			    }catch(Exception e) {		    	
 					System.out.println("URL may not be linked or other errors!");
+					System.out.println(e.getMessage());
 				}finally{
 					num++;
 				}
@@ -190,7 +190,7 @@ public class TestProject extends HttpServlet {
 		int count=0;
 		int maxSizeOfTitle=20;
 		for(int j=webList.getLst().size()-1;j>=0;j--) {
-			System.out.println("========="+j+"=============");
+			System.out.println("========="+(count+1)+"=============");
 			if(webList.getLst().get(j).root.webPage.name.length() > maxSizeOfTitle) {
 				sortedWebList[count][0] = webList.getLst().get(j).root.webPage.name.substring(0,maxSizeOfTitle) + "...";
 
@@ -203,8 +203,10 @@ public class TestProject extends HttpServlet {
 			sortedWebList[count][1] = webList.getLst().get(j).root.webPage.url;
 			System.out.println(sortedWebList[count][1]);
 			sortedWebList[count][2] = String.format("%.1f",webList.getLst().get(j).root.nodeScore);
+			//System.out.println("sublinkInfo:\n" + webList.getLst().get(j).eularPrintTree());
 			System.out.println("Each web total score: " + sortedWebList[count][2]);
-			//System.out.println("sublinkInfo:\n" + sublinkInfo);
+			sortedWebList[count][3] = webList.getLst().get(j).eularPrintTree();
+			
 			System.out.println();
 			count++;
 

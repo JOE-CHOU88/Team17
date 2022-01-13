@@ -97,7 +97,7 @@
 		                            <p>
 		                                <strong><a href='<%=orderList[i][1]%>'><%=orderList[i][0]%> </a><br></strong>
 		                            	<br>Total score: <%=orderList[i][2]%><br>
-		                            	Host:<br>Place:<br>Price:<br>Time:
+		                            	Web Tree:<br><%=orderList[i][3] %>
 										<br>
 		                            </p>
 		                        </div>

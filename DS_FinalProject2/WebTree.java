@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class WebTree {
 	public WebNode root;
+	public String sublinkInfo = "";
 	
 	public WebTree(WebPage rootPage){
 		this.root = new WebNode(rootPage);
@@ -27,12 +28,12 @@ public class WebTree {
 	}
 	
 	private String eularPrintTree(WebNode startNode){
+		
 		int nodeDepth = startNode.getDepth();
-		String sublinkInfo = "";
 		
 		if(nodeDepth > 1) {
 			System.out.print("\n" + repeat("\t", nodeDepth-1));
-			sublinkInfo += "\n" + repeat("\t", nodeDepth-1);
+			sublinkInfo += "<br>" + repeat("&emsp;&emsp;", nodeDepth-1);
 		}
 		
 		//print "("
@@ -41,7 +42,12 @@ public class WebTree {
 		//print "name","score"
 		
 		System.out.print(startNode.webPage.name+","+startNode.nodeScore);
-		sublinkInfo += startNode.webPage.name+","+startNode.nodeScore;
+		//sublinkInfo += startNode.webPage.name.substring(0, 15)+","+startNode.nodeScore;
+		if(startNode.webPage.name.length()>18) {
+			sublinkInfo += String.format("%-18s, %.1f",startNode.webPage.name.substring(0, 15)+"...", startNode.nodeScore);
+		}else {
+			sublinkInfo += String.format("%-18s, %.1f",startNode.webPage.name, startNode.nodeScore);
+		}
 		
 		//2.print child preorder
 		for(WebNode child : startNode.children){
@@ -64,7 +70,7 @@ public class WebTree {
 		*/
 		if(startNode.isTheLastChild()) {
 			System.out.print("\n" + repeat("\t", nodeDepth-2));
-			sublinkInfo += "\n" + repeat("\t", nodeDepth-2);
+			sublinkInfo += "<br>" + repeat("&emsp;&emsp;", nodeDepth-2);
 		}
 		return sublinkInfo;
 	}
