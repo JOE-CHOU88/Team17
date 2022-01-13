@@ -24,6 +24,7 @@ public class TestProject extends HttpServlet {
 	private WebPage page;
 	private KeywordList keywords;
 	private WordCounter counter;
+	private URLDecode decoder;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -73,14 +74,16 @@ public class TestProject extends HttpServlet {
 		//@SuppressWarnings("deprecation")
 		//System.out.println("1<--------->");
 		String keyword = request.getParameter("keyword").replace(" ", "%20");
-		
+		//keyword = java.net.URLEncoder.encode(keyword+"%20藝文中心%20youtube", "UTF-8");
+		//decoder = new URLDecode(keyword);
+		//String decodedKeyword = decoder.decode();
 		//System.out.println("keyword: " + keyword);
-		GoogleQuery google = new GoogleQuery(keyword + "%20藝文中心%20表演%20youtube"); //%20兩廳院%20現代舞
+		GoogleQuery google = new GoogleQuery(String.format("'%s'", keyword) +"+藝文中心+舞蹈演出+youtube"); //%20兩廳院%20現代舞
 //		String k = java.net.URLEncoder.encode(request.getParameter("keyword"), "UTF-8");
 //		System.out.println("---------");
 //		System.out.println(k);
 		//System.out.println("2<--------->");
-		System.out.println("User input keyword: " + request.getParameter("keyword"));
+		System.out.println("User input keyword: " + String.format("'%s'", keyword));
 		System.out.println();
 		HashMap<String, String> query = google.query();
 		
@@ -89,7 +92,7 @@ public class TestProject extends HttpServlet {
 		int num = 0;
 		WebList webList = new WebList();
 		for(Entry<String, String> entry : query.entrySet()) {
-			String sublinkInfo;
+			//String sublinkInfo;
 		    String key = entry.getKey();
 		    String value = entry.getValue();
 		    value = value.substring(7, value.indexOf("&"));
@@ -108,7 +111,7 @@ public class TestProject extends HttpServlet {
 			    //construct a webpage
 			    try {		    	
 			    	//try to decode the url
-			    	URLDecode decoder = new URLDecode(value);
+			    	decoder = new URLDecode(value);
 			    	String decodedValue = decoder.decode();
 			    	
 				    page = new WebPage(decodedValue, key);
