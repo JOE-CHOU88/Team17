@@ -42,7 +42,7 @@ public class HtmlMatcher {
     public HashMap<String, String> match() throws IOException
 
 	{
-    	ArrayList<String> array= new ArrayList<String>(); 
+    	//ArrayList<String> array= new ArrayList<String>(); 
 		if(content==null)
 
 		{
@@ -53,7 +53,7 @@ public class HtmlMatcher {
 		
 		if (content != "runtime error") {
 			HashMap<String, String> retVal = new HashMap<String, String>();
-			
+			//HashMap<String, String> retTitleUrl = new HashMap<String, String>();
 			Document doc = Jsoup.parse(content);
 	//		System.out.println(doc.text());
 			Elements lis = doc.select("a");
@@ -85,7 +85,11 @@ public class HtmlMatcher {
 					//test
 					//System.out.println(title + ","+citeUrl);
 					//System.out.println("<----------------------->");
-					retVal.put(title, citeUrl);
+					
+					retVal.put(title, decodedValue);
+					//retTitleUrl.put(title, decodedValue);
+					//retVal.put(retTitleUrl, childPicUrl);
+					
 					//array.add(citeUrl);
 //					System.out.println("HtmlMatcher: 88");
 //					for (String ss: array) {
@@ -116,6 +120,88 @@ public class HtmlMatcher {
 		}
 
 	}
+    
+//    private String fetchChildContent(String sublink) throws IOException{
+//		URL url = new URL(sublink);
+//		URLConnection conn = url.openConnection();
+//		InputStream in = conn.getInputStream();
+//		BufferedReader br = new BufferedReader(new InputStreamReader(in));
+//	
+//		String retVal = "";
+//	
+//		String line = null;
+//		long startTime = System.currentTimeMillis() / 1000;
+//		long endTime   = startTime + 10;
+//		while((line=br.readLine())!=null)
+//		{
+//			retVal += line;
+//			if((System.currentTimeMillis() / 1000) > endTime) {
+//		    	return "runtime error";
+//		    }
+//
+//		}
+//		return retVal;
+//    }
+  
+    public String findPic() throws IOException{
+    	if(content==null)
+
+		{
+
+			content= fetchContent();
+
+		}
+		
+		if (content != "runtime error") {
+			String retPicUrl = "";
+			
+			Document doc = Jsoup.parse(content);
+	//		System.out.println(doc.text());
+			Elements lis = doc.select("img");
+			
+			
+			for(Element li : lis)
+			{
+				try 
+	
+				{
+					//test
+					//System.out.println(li);
+					String citeUrl = li.attr("src");
+					citeUrl=citeUrl.substring(citeUrl.indexOf("http"), citeUrl.indexOf("&"));
+					URLDecode decoder = new URLDecode(citeUrl);
+					retPicUrl = decoder.decode();
+					/*
+					if(title.equals("")) {
+						continue;
+					}
+					*/
+					//test
+					//System.out.println(title + ","+citeUrl);
+					//System.out.println("<----------------------->");
+					
+					//array.add(citeUrl);
+//					System.out.println("HtmlMatcher: 88");
+//					for (String ss: array) {
+//						System.out.println("child link: " + ss);
+//						//retVal.put("title", ss);
+//					}
+	
+				} catch (IndexOutOfBoundsException e) {
+	
+	//				e.printStackTrace();
+	
+				}
+	
+				
+	
+			}
+			return retPicUrl;
+		}else {
+			return null;
+		}
+    }
+
  /* 
     public HashMap<String, String> match() throws IOException{	
     	HashMap<String, String> retVal = new HashMap<String, String>();

@@ -91,7 +91,17 @@
 		                <div class="col-md-4">
 		                    <div class="work-box">
 		                        <div class="icon text-primary py-3">
-		                            <img src="https://picsum.photos/id/1037/300/300" alt="">
+		                        	<%
+		                        	if (orderList[i][4] != "") {
+		                        	%>
+		                            	<img src='<%=orderList[i][4]%>' alt="" width="300">
+		                            <%
+		                        	}else{
+		                            %>
+		                            	<img src="https://picsum.photos/id/1037/300/300" alt="">
+		                            <%
+		                        	}
+		                            %>
 		                        </div>
 		                        <div>
 		                            <p>

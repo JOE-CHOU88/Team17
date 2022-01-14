@@ -10,15 +10,15 @@ import javax.net.ssl.SSLSession;
 
 public class Main {//
 	public static void main(String[] args) throws IOException {
-		WordCounter counter = new WordCounter("https://npac-ntch.org/zh");
-		WebPage rootPage = new WebPage("http://soslab.nccu.edu.tw/Welcome.html", "Welcome");		
-		WebTree tree = new WebTree(rootPage);
-		//build childnode (at least retrieve one sublink)
-		tree.root.addChild(new WebNode(new WebPage("http://soslab.nccu.edu.tw/Publications.html", "Publications")));
-		tree.root.addChild(new WebNode(new WebPage("http://soslab.nccu.edu.tw/Projects.html", "Projects")));
-		tree.root.children.get(1).addChild(new WebNode(new WebPage("https://vlab.cs.ucsb.edu/stranger/", "Stranger")));
-		tree.root.addChild(new WebNode(new WebPage("http://soslab.nccu.edu.tw/Members.html", "Members")));
-		tree.root.addChild(new WebNode(new WebPage("http://www3.nccu.edu.tw/~yuf/course.htm", "Course")));
+//		WordCounter counter = new WordCounter("https://npac-ntch.org/zh");
+//		WebPage rootPage = new WebPage("http://soslab.nccu.edu.tw/Welcome.html", "Welcome");		
+//		WebTree tree = new WebTree(rootPage);
+//		//build childnode (at least retrieve one sublink)
+//		tree.root.addChild(new WebNode(new WebPage("http://soslab.nccu.edu.tw/Publications.html", "Publications")));
+//		tree.root.addChild(new WebNode(new WebPage("http://soslab.nccu.edu.tw/Projects.html", "Projects")));
+//		tree.root.children.get(1).addChild(new WebNode(new WebPage("https://vlab.cs.ucsb.edu/stranger/", "Stranger")));
+//		tree.root.addChild(new WebNode(new WebPage("http://soslab.nccu.edu.tw/Members.html", "Members")));
+//		tree.root.addChild(new WebNode(new WebPage("http://www3.nccu.edu.tw/~yuf/course.htm", "Course")));
 		
 		
 //		//You need to change scanner into reading file

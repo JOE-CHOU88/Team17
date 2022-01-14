@@ -4,12 +4,14 @@ import java.util.ArrayList;
 public class WebPage {
 	public String url;
 	public String name;
+	public String picUrl;
 	public WordCounter counter;
 	public double score;
 	
-	public WebPage(String url, String name){
+	public WebPage(String url, String name, String picUrl){
 		this.url = url;
 		this.name = name;
+		this.picUrl = picUrl;
 		this.counter = new WordCounter(url);	
 	}
 	
@@ -25,6 +27,9 @@ public class WebPage {
 		//score=keywords.outputScore();
 		
 	}
-
+	
+	public void setPicUrl(String newPicUrl) {
+		this.picUrl = newPicUrl;
+	}
 	
 }

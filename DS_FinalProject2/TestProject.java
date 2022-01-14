@@ -84,7 +84,7 @@ public class TestProject extends HttpServlet {
 		//decoder = new URLDecode(keyword);
 		//String decodedKeyword = decoder.decode();
 		//System.out.println("User input keyword (decoded after): " + String.format("'%s'", keyword));
-		GoogleQuery google = new GoogleQuery(keyword + "+dance+youtube");
+		GoogleQuery google = new GoogleQuery(keyword + "+dance"); //+youtube
 		//GoogleQuery google = new GoogleQuery(String.format("'%s'", keyword) +"+藝文中心+舞蹈演出+youtube"); //%20兩廳院%20現代舞
 //		String k = java.net.URLEncoder.encode(request.getParameter("keyword"), "UTF-8");
 //		System.out.println("---------");
@@ -121,7 +121,7 @@ public class TestProject extends HttpServlet {
 			    	decoder = new URLDecode(value);
 			    	String decodedValue = decoder.decode();
 			    	
-				    page = new WebPage(decodedValue, key);
+				    page = new WebPage(decodedValue, key, ""); //fill in
 				    
 				    
 				    //test
@@ -132,6 +132,10 @@ public class TestProject extends HttpServlet {
 				    WebTree tree = new WebTree(page);
 				    HtmlMatcher matcher = new HtmlMatcher(page.url);
 				    HashMap<String, String> children = matcher.match();
+				    //update picture url
+				    String picUrl = matcher.findPic();
+				    page.setPicUrl(picUrl);
+				    System.out.println("picUrl: " + picUrl);
 					//String[][] cs = new String[children.size()][2];
 					//int cnum=0;
 					ArrayList<String> checkDuplicate = new ArrayList<String> ();
@@ -143,7 +147,7 @@ public class TestProject extends HttpServlet {
 					    //System.out.println("child url: " + cvalue); //url
 					    //check if the sublink appears before
 					    if(! checkDuplicate.contains(cvalue)) {
-					    	WebNode child = new WebNode(new WebPage(cvalue, ckey));
+					    	WebNode child = new WebNode(new WebPage(cvalue, ckey, ""));
 						    tree.root.addChild(child);
 						    //tree.root.nodeScore += child.nodeScore;
 						    //System.out.println("<<----------------->>");
@@ -195,11 +199,11 @@ public class TestProject extends HttpServlet {
 //		webList.output();
 //		System.out.println(webList.size());
 		
-		String[][] sortedWebList = new String[9][4]; //webList.getLst().size()
+		String[][] sortedWebList = new String[18][5]; //webList.getLst().size()
 		request.setAttribute("sortedWebList", sortedWebList);
 		int count=0;
 		int maxSizeOfTitle=20;//webList.getLst().size()-1
-		for(int j=webList.getLst().size()-1;j>=webList.getLst().size()-1-8;j--) {
+		for(int j=webList.getLst().size()-1;j>=webList.getLst().size()-1-17;j--) {
 			System.out.println("========="+(count+1)+"=============");
 			if(webList.getLst().get(j).root.webPage.name.length() > maxSizeOfTitle) {
 				sortedWebList[count][0] = webList.getLst().get(j).root.webPage.name.substring(0,maxSizeOfTitle) + "...";
@@ -216,11 +220,11 @@ public class TestProject extends HttpServlet {
 			//System.out.println("sublinkInfo:\n" + webList.getLst().get(j).eularPrintTree());
 			System.out.println("Each web total score: " + sortedWebList[count][2]);
 			sortedWebList[count][3] = webList.getLst().get(j).eularPrintTree();
+			sortedWebList[count][4] = webList.getLst().get(j).root.webPage.picUrl;
+			System.out.println("Each web pic url: " + sortedWebList[count][4]);
 			
 			System.out.println();
-			count++;
-
-			
+			count++;	
 		}
 		
 		
