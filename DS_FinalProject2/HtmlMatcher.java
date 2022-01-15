@@ -1,4 +1,5 @@
 import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -20,10 +21,13 @@ public class HtmlMatcher {
     
     private String fetchContent() throws IOException{
 		URL url = new URL(this.urlStr);
+		//System.out.println("1Hey!!!!!!!!!!!!!!!");
 		URLConnection conn = url.openConnection();
+		//System.out.println("2Hey!!!!!!!!!!!!!!!");
 		InputStream in = conn.getInputStream();
+		//System.out.println("3Hey!!!!!!!!!!!!!!!");
 		BufferedReader br = new BufferedReader(new InputStreamReader(in));
-	
+		//System.out.println("4Hey!!!!!!!!!!!!!!!");
 		String retVal = "";
 	
 		String line = null;
@@ -143,7 +147,7 @@ public class HtmlMatcher {
 //		return retVal;
 //    }
   
-    public String findPic() throws IOException{
+    public String findPic() throws Exception{
     	if(content==null)
 
 		{
@@ -157,7 +161,10 @@ public class HtmlMatcher {
 			
 			Document doc = Jsoup.parse(content);
 	//		System.out.println(doc.text());
-			Elements lis = doc.select("img");
+			Elements lis = doc.select("link[rel=\"icon\"]");
+			System.out.println("lis:");
+			System.out.println(lis);
+			//lis = lis.select("[rel=shortcut icon]");
 			
 			
 			for(Element li : lis)
@@ -167,10 +174,23 @@ public class HtmlMatcher {
 				{
 					//test
 					//System.out.println(li);
-					String citeUrl = li.attr("src");
-					citeUrl=citeUrl.substring(citeUrl.indexOf("http"), citeUrl.indexOf("&"));
+					String citeUrl = li.attr("href");
+					//some links just have relative path
+					if(citeUrl.indexOf("http") == -1) {
+						if(urlStr.contains(".com.tw")) {
+							citeUrl = urlStr.substring(0, urlStr.indexOf(".com.tw")+7) + citeUrl;
+						}else if(urlStr.contains(".com")){
+							citeUrl = urlStr.substring(0, urlStr.indexOf(".com")+4) + citeUrl;
+						}
+						
+					}
+					//citeUrl=citeUrl.substring(citeUrl.indexOf("http"), citeUrl.indexOf("&"));
 					URLDecode decoder = new URLDecode(citeUrl);
 					retPicUrl = decoder.decode();
+					
+					if (HtmlMatcher.testConnection(retPicUrl) != 200) {
+						retPicUrl = "";
+					}
 					/*
 					if(title.equals("")) {
 						continue;
@@ -200,6 +220,25 @@ public class HtmlMatcher {
 		}else {
 			return null;
 		}
+    }
+    
+    public static int testConnection(String address) throws Exception {
+    	int status = 404;
+    	try {
+    		URL urlObj = new URL(address);
+    		HttpURLConnection oc = (HttpURLConnection) urlObj.openConnection();
+    		oc.setUseCaches(false);
+    		oc.setConnectTimeout(3000); // 設定超時時間
+    		status = oc.getResponseCode();// 請求狀態
+    		if (200 == status) {
+    			// 200是請求地址順利連通。。
+    			return status;
+    		}
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		throw e;
+    	}
+    	return status;
     }
 
  /* 
