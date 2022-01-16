@@ -24,6 +24,7 @@ public class HtmlMatcher {
 		//System.out.println("1Hey!!!!!!!!!!!!!!!");
 		URLConnection conn = url.openConnection();
 		//System.out.println("2Hey!!!!!!!!!!!!!!!");
+		conn.setConnectTimeout(3000); //test if it takes too long to link
 		InputStream in = conn.getInputStream();
 		//System.out.println("3Hey!!!!!!!!!!!!!!!");
 		BufferedReader br = new BufferedReader(new InputStreamReader(in));

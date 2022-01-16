@@ -54,7 +54,9 @@ public class GoogleQuery
 		URL u = new URL(url);
 
 		URLConnection conn = u.openConnection();
-
+		
+		conn.setConnectTimeout(3000); //test if it takes too long to link
+		
 		conn.setRequestProperty("User-agent", "Chrome/7.0.517.44");
 
 		InputStream in = conn.getInputStream();
