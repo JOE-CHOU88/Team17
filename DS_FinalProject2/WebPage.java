@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class WebPage {
 	public String url;
@@ -18,7 +17,6 @@ public class WebPage {
 	public void setScore(KeywordList keywords) throws IOException{
 		score = 0;
 		//calculate score
-		
 		for(Keyword k :keywords.lst()){	
 			score += k.weight * counter.countKeyword(k.name);
 			
