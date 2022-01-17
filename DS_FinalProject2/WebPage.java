@@ -17,19 +17,17 @@ public class WebPage {
 	
 	public void setScore(KeywordList keywords) throws IOException{
 		score = 0;
-//		3.calculate score
+		//calculate score
 		
 		for(Keyword k :keywords.lst()){	
 			score += k.weight * counter.countKeyword(k.name);
-			// System.out.println(score);
+			
 		}
-		
-		//score=keywords.outputScore();
-		
 	}
 	
 	public void setPicUrl(String newPicUrl) {
 		this.picUrl = newPicUrl;
+		
 	}
 	
 }

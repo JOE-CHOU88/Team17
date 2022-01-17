@@ -22,33 +22,25 @@ import org.jsoup.nodes.Element;
 
 import org.jsoup.select.Elements;
 
-public class GoogleQuery 
-
-{
+public class GoogleQuery {
 
 	public String searchKeyword;
-
+	
 	public String url;
-
+	
 	public String content;
-
-	public GoogleQuery(String searchKeyword)
-
-	{
-
+	
+	public GoogleQuery(String searchKeyword) {
+		
 		this.searchKeyword = searchKeyword;
-
-
+		
 		this.url = "http://www.google.com/search?q="+searchKeyword+"&oe=utf8&num=50";
+		
 		System.out.println("url: " + url);
 
 	}
 
-	
-
-	private String fetchContent() throws IOException
-
-	{
+	private String fetchContent() throws IOException {
 		String retVal = "";
 
 		URL u = new URL(url);
@@ -69,8 +61,7 @@ public class GoogleQuery
 		//count the running time of fetching each web site. If too long, then stop
 		long startTime = System.currentTimeMillis() / 1000;
 		long endTime   = startTime + 10;
-		while((line=bufReader.readLine())!=null)
-		{
+		while((line=bufReader.readLine())!=null) {
 			retVal += line;
 			if((System.currentTimeMillis() / 1000) > endTime) {
 		    	return "runtime error";
@@ -79,14 +70,10 @@ public class GoogleQuery
 		}
 		return retVal;
 	}
-	public HashMap<String, String> query() throws IOException
+	
+	public HashMap<String, String> query() throws IOException {
 
-	{
-
-		if(content==null)
-
-		{
-
+		if(content==null) {
 			content= fetchContent();
 
 		}
@@ -95,55 +82,33 @@ public class GoogleQuery
 			HashMap<String, String> retVal = new HashMap<String, String>();
 			
 			Document doc = Jsoup.parse(content);
-	//		System.out.println(doc.text());
 			Elements lis = doc.select("div");
-	//		 System.out.println(lis);
 			lis = lis.select(".kCrYT");
-//			System.out.println("----------------------------");
-//			System.out.println(lis);
-//			System.out.println("----------------------------");
-	//		System.out.println(lis.size());
 			
-			
-			for(Element li : lis)
-			{
-				try 
-	
-				{
-					//test
-					//System.out.println(li);
-					
+			for(Element li : lis) {
+				try {
 					String citeUrl = li.select("a").get(0).attr("href");
 					String title = li.select("a").get(0).select(".vvjwJb").text();
 					if(title.equals("")) {
 						continue;
 					}
 					
-					//test
 					System.out.println(title + ","+citeUrl);
 					System.out.println("<----------------------->");
 					retVal.put(title, citeUrl);
 					
 				} catch (IndexOutOfBoundsException e) {
-	
-	//				e.printStackTrace();
+					e.getMessage();
 	
 				}
-	
-				
-	
 			}
-	
-			
 			return retVal;
+			
 		}else {
 			return null;
+			
 		}
 
 	}
-
 	
-
-	
-
 }

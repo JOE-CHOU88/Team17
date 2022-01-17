@@ -8,10 +8,6 @@ public class URLDecode {
 	}
 	
 	public String decode() {
-
-		// 待編碼的網址
-	    //encodedURL = "https://www.sunderland.ac.uk/study/performing-arts/advanced-dance-performance/";
-	
 	    try {
 	    	// 進行 URL 百分比解碼
 	        String url = URLDecoder.decode(encodedURL, "UTF-8");
@@ -21,7 +17,7 @@ public class URLDecode {
 	        return url;
 	
 	    } catch (UnsupportedEncodingException e) {
-	      // 例外處理 ...
+	    	// 例外處理 ...
 	    	//System.out.println("Cannot decode the URL");
 	    	return "Cannot decode the URL";
 	    }
