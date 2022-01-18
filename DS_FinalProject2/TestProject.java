@@ -143,7 +143,7 @@ public class TestProject extends HttpServlet {
 			System.out.println("========="+(count+1)+"=============");
 			if(webList.getLst().get(j).root.webPage.name.length() > maxSizeOfTitle) {
 				sortedWebList[count][0] = webList.getLst().get(j).root.webPage.name.substring(0,maxSizeOfTitle) + "...";
-
+			
 			}else {
 				sortedWebList[count][0] = webList.getLst().get(j).root.webPage.name;
 
